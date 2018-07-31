@@ -4,6 +4,8 @@ import './App.css';
 import TopNavigation from './components/TopNavigation';
 import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
+import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
+import TermsOfUsePage from './pages/TermsOfUsePage';
 import LoginPage from './pages/LoginPage';
 
 class App extends Component {
@@ -45,6 +47,8 @@ class App extends Component {
         <Switch>
           <Route exact path='/' component={HomePage} />
           <Route exact path='/about' component={AboutPage} />
+          <Route exact path='/privacy' component={PrivacyPolicyPage} />
+          <Route exact path='/terms' component={TermsOfUsePage} />
           <Route exact path='/login' component={LoginPage} />
         </Switch>
       </React.Fragment>
