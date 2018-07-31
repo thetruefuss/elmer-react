@@ -6,20 +6,34 @@ class SubjectList extends Component {
     super(props);
 
     this.state = {
+      logged_in: localStorage.getItem('token') ? true : false,
       subjects: [],
     };
   }
 
   componentDidMount() {
-    fetch('http://127.0.0.1:8000/api/frontboard/subjects', {
-      headers: {
-        'Content-Type': 'application/json'
-      },
-    })
-      .then(res => res.json())
-      .then(json => {
-        this.setState({ subjects: json.results });
-      });
+    if (this.state.logged_in) {
+      fetch('http://127.0.0.1:8000/api/frontboard/subjects', {
+        headers: {
+          Authorization: `JWT ${localStorage.getItem('token')}`,
+          'Content-Type': 'application/json'
+        },
+      })
+        .then(res => res.json())
+        .then(json => {
+          this.setState({ subjects: json.results });
+        });
+    } else {
+      fetch('http://127.0.0.1:8000/api/frontboard/subjects', {
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      })
+        .then(res => res.json())
+        .then(json => {
+          this.setState({ subjects: json.results });
+        });
+    }
   }
 
   render() {
