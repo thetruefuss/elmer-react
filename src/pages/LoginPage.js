@@ -19,6 +19,7 @@ class LoginPage extends Component {
       .then(res => res.json())
       .then(json => {
         localStorage.setItem('token', json.token);
+        window.location.href = "/";
       });
   };
 
