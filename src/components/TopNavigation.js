@@ -54,7 +54,7 @@ class TopNavigation extends Component {
                     <div className="dropdown-divider" />
                     <a className="dropdown-item" href="/">Account settings</a>
                     <a className="dropdown-item font-weight-light" href="/">Send Feedback</a>
-                    <a className="dropdown-item pointer_link" onClick={this.props.handle_logout}>Sign out</a>
+                    <a className="dropdown-item" href="#" onClick={this.props.handle_logout}>Sign out</a>
                   </div>
                 </div>
               </React.Fragment> :

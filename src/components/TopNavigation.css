@@ -1,29 +1,30 @@
 #search {
-     background: url(../images/search_icon.png) 10px 6px no-repeat;
-     padding-left: 25px;
-     background-size: 17px
+	background: url(../images/search_icon.png) 10px 6px no-repeat;
+	padding-left: 25px;
+	background-size: 17px
 }
- #topNavbar .nav-link, .navbar-brand {
-     font-weight: 700
+#topNavbar .nav-link,
+.navbar-brand {
+	font-weight: 700
 }
- .extra_navbar_styling {
-     background: #fff;
-     border-top: 2px solid #1f89de;
-     box-shadow: 0 1px 0 rgba(12, 13, 14, .1), 0 1px 3px rgba(12, 13, 14, .1), 0 4px 20px rgba(12, 13, 14, .035), 0 1px 1px rgba(12, 13, 14, .025)
+.extra_navbar_styling {
+	background: #fff;
+	border-top: 2px solid #1f89de;
+	box-shadow: 0 1px 0 rgba(12, 13, 14, .1), 0 1px 3px rgba(12, 13, 14, .1), 0 4px 20px rgba(12, 13, 14, .035), 0 1px 1px rgba(12, 13, 14, .025)
 }
- .login_btn, .new_post_btn {
-     background-color: #1f89de
+.login_btn,
+.new_post_btn {
+	background-color: #1f89de
 }
- .login_btn, .new_post_btn, .signup_btn {
-     padding: 5px 15px;
-     border-radius: 100px
+.login_btn,
+.new_post_btn,
+.signup_btn {
+	padding: 5px 15px;
+	border-radius: 100px
 }
- .login_btn {
-     margin-right: 15px
+.login_btn {
+	margin-right: 15px
 }
- .new_post_btn {
-     margin-left: 15px
-}
-.pointer_link:hover {
-  cursor: pointer;
+.new_post_btn {
+	margin-left: 15px
 }
