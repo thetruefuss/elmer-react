@@ -9,7 +9,7 @@ class LoginPage extends Component {
 
   handle_login = (e, data) => {
     e.preventDefault();
-    fetch('http://127.0.0.1:8000/api/users/login/', {
+    fetch('http://127.0.0.1:8000/api/auth/token/obtain/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
