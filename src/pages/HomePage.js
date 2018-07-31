@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import TopNavigation from '../components/TopNavigation';
 
 class HomePage extends Component {
   componentDidMount() {
@@ -8,7 +9,8 @@ class HomePage extends Component {
   render() {
     return (
       <React.Fragment>
-        <h1>HomePage</h1>
+        <TopNavigation />
+        
       </React.Fragment>
     );
   }
