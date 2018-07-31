@@ -7,6 +7,7 @@ import AboutPage from './pages/AboutPage';
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
 import TermsOfUsePage from './pages/TermsOfUsePage';
 import LoginPage from './pages/LoginPage';
+import SignUpPage from './pages/SignUpPage';
 
 class App extends Component {
   constructor(props) {
@@ -50,6 +51,7 @@ class App extends Component {
           <Route exact path='/privacy' component={PrivacyPolicyPage} />
           <Route exact path='/terms' component={TermsOfUsePage} />
           <Route exact path='/login' component={LoginPage} />
+          <Route exact path='/signup' component={SignUpPage} />
         </Switch>
       </React.Fragment>
     );
