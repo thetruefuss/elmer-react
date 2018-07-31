@@ -9,8 +9,7 @@ class HomePage extends Component {
   render() {
     return (
       <React.Fragment>
-        <TopNavigation />
-        
+
       </React.Fragment>
     );
   }
