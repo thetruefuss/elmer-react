@@ -1,0 +1,14 @@
+.trending-boards-header {
+	color: #607d8b;
+	border-bottom: 2px solid #1f89de;
+	display: inline-block;
+	font-size: 16px;
+	font-weight: 900;
+	letter-spacing: -.4px;
+	margin: 3px 0;
+	padding-bottom: 0;
+	text-transform: uppercase;
+}
+.board-font-size {
+	font-size: 14px;
+}
