@@ -3,6 +3,8 @@ import { Switch, Route } from 'react-router-dom';
 import './App.css';
 import TopNavigation from './components/TopNavigation';
 import HomePage from './pages/HomePage';
+import TrendingPage from './pages/TrendingPage';
+import BoardPage from './pages/BoardPage';
 import AboutPage from './pages/AboutPage';
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
 import TermsOfUsePage from './pages/TermsOfUsePage';
@@ -47,6 +49,8 @@ class App extends Component {
          />
         <Switch>
           <Route exact path='/' component={HomePage} />
+          <Route exact path='/trending' component={TrendingPage} />
+          <Route exact path='/b/:board_slug' component={BoardPage} />
           <Route exact path='/about' component={AboutPage} />
           <Route exact path='/privacy' component={PrivacyPolicyPage} />
           <Route exact path='/terms' component={TermsOfUsePage} />
