@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Recaptcha from 'react-recaptcha';
 import './SignUpForm.css';
 
 class SignUpForm extends Component {
@@ -18,6 +19,14 @@ class SignUpForm extends Component {
     });
   };
 
+  verify_callback = response => {
+    console.log(response);
+  }
+
+  onload_callback = () => {
+    console.log('Recaptcha loaded successfully.');
+  }
+
   render() {
     return (
       <React.Fragment>
@@ -34,6 +43,13 @@ class SignUpForm extends Component {
           <label htmlFor="id_password"><span id="required_inp">*</span>Password</label>
           <input type="password" className="form-control" id="id_password" name="password" aria-describedby="password_help" maxLength={150} value={this.state.password} onChange={this.handle_change} required />
         </div>
+        <Recaptcha
+          sitekey="6LcxazUUAAAAAJstEHfmrSDE5QFqSrPUHqozW9XQ"
+          render="explicit"
+          verifyCallback={this.verify_callback}
+          onloadCallback={this.onload_callback}
+        />
+        <br />
         <button type="submit" className="btn btn-success btn-block">Sign Up</button>
         <small className="form-text text-muted">By signing up, you agree to our <a href="/">terms of service</a> &amp; <a href="/">privacy policy</a>.</small>
       </form>
