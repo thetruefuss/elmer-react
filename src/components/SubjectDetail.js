@@ -10,7 +10,8 @@ class SubjectDetail extends Component {
         <div className="card-body card-body-styling">
 
         <div className="star-partition">
-          <a href="/"
+          <a href="#"
+             style={{textDecoration: 'none'}}
              id="js-star-subject">
              {subject.is_starred === true ?
                <i className="fa fa-star fa-lg" aria-hidden="true" id="star_icon"></i> :
