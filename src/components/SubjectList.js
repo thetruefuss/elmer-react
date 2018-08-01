@@ -12,8 +12,9 @@ class SubjectList extends Component {
   }
 
   componentDidMount() {
+    const { url } = this.props;
     if (this.state.logged_in) {
-      fetch('http://127.0.0.1:8000/api/frontboard/subjects', {
+      fetch(url, {
         headers: {
           Authorization: `JWT ${localStorage.getItem('token')}`,
           'Content-Type': 'application/json'
@@ -24,7 +25,7 @@ class SubjectList extends Component {
           this.setState({ subjects: json.results });
         });
     } else {
-      fetch('http://127.0.0.1:8000/api/frontboard/subjects', {
+      fetch(url, {
         headers: {
           'Content-Type': 'application/json'
         },

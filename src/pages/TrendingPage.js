@@ -5,9 +5,9 @@ import SubjectList from '../components/SubjectList';
 import TrendingBoards from '../components/TrendingBoards';
 import Footer from '../components/Footer';
 
-class HomePage extends Component {
+class TrendingPage extends Component {
   componentDidMount() {
-    document.title = "Elmer - A social network inspired by reddit"
+    document.title = "Trending | Elmer"
   }
 
   render() {
@@ -17,8 +17,8 @@ class HomePage extends Component {
           <div className="row">
 
             <div className="col-lg-8 col-md-8">
-              <PageHeading text="Homepage" />
-              <SubjectList url="http://127.0.0.1:8000/api/frontboard/subjects/" />
+              <PageHeading text="Top Subjects" />
+              <SubjectList url="http://127.0.0.1:8000/api/frontboard/subjects/?trending=True" />
             </div>
 
             <div class="col-lg-4 col-md-4">
@@ -33,4 +33,4 @@ class HomePage extends Component {
     );
   }
 }
-export default HomePage;
+export default TrendingPage;

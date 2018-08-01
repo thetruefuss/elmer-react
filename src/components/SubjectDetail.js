@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import './SubjectDetail.css';
+import { Link } from 'react-router-dom';
 import Linkify from 'react-linkify';
+import './SubjectDetail.css';
 
 class SubjectDetail extends Component {
   render() {
@@ -24,11 +25,11 @@ class SubjectDetail extends Component {
 
           <div className="body-partition">
             <p className="post-info text-muted">
-              <a href="/"
-                 title="visit board"
-                 className="board-link">b/{ subject.board }</a> &bull; Posted by <a href="/"
-                                                                                    title="view profile"
-                                                                                    className="profile-link">{ subject.author.screen_name }</a>
+              <Link to={`/b/${subject.board}`}
+                    title="visit board"
+                    className="board-link">b/{ subject.board }</Link> &bull; Posted by <a href="/"
+                                                                                          title="view profile"
+                                                                                          className="profile-link">{ subject.author.screen_name }</a>
                                                                                   <span> { subject.created_naturaltime }</span>
             </p>
             <h5><a href="/" className="card-link">{ subject.title}</a></h5>
