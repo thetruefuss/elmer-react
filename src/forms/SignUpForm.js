@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Recaptcha from 'react-recaptcha';
+import { Link } from 'react-router-dom';
 import './SignUpForm.css';
 
 class SignUpForm extends Component {
@@ -51,11 +52,11 @@ class SignUpForm extends Component {
         />
         <br />
         <button type="submit" className="btn btn-success btn-block">Sign Up</button>
-        <small className="form-text text-muted">By signing up, you agree to our <a href="/">terms of service</a> &amp; <a href="/">privacy policy</a>.</small>
+        <small className="form-text text-muted">By signing up, you agree to our <Link to="/terms">terms of service</Link> &amp; <Link to="/privacy">privacy policy</Link>.</small>
       </form>
       <div className="card text-center" style={{marginTop: 15}}>
         <div className="card-body">
-          Already have an account? <a href="/" className="card-link">Login</a>
+          Already have an account? <Link to="/login" className="card-link">Login</Link>
         </div>
       </div>
       </React.Fragment>

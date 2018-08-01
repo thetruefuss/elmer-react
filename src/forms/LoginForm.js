@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import './LoginForm.css';
 
 class LoginForm extends Component {
@@ -36,7 +37,7 @@ class LoginForm extends Component {
         </form>
         <div className="card text-center" style={{marginTop: 15}}>
           <div className="card-body">
-            Dont have an account? <a href="/" className="card-link">Sign up</a>
+            Dont have an account? <Link to="/signup" className="card-link">Sign up</Link>
           </div>
         </div>
       </React.Fragment>

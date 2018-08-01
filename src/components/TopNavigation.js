@@ -41,7 +41,7 @@ class TopNavigation extends Component {
                 <a href="/" style={{marginRight: 15, position: 'relative'}} id="check_activities" title="Notifications"><i className="fa fa-bell-o fa-lg" aria-hidden="true" /><span id="activities_count" /></a>
                 <a href="/" style={{marginRight: 15, position: 'relative'}} title="Post a new subject"><i className="fa fa-pencil fa-lg" aria-hidden="true" /></a>
                 <div className="dropdown">
-                  <a href="#" role="button" id="user_dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Profile and settings"><img src={this.props.user_details.profile_picture} style={{width: 36, height: 36, borderRadius: 50}} /></a>
+                  <a href="#" role="button" id="user_dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Profile and settings"><img src={this.props.user_details.profile_picture} alt="Elmer Logo" style={{width: 36, height: 36, borderRadius: 50}} /></a>
                   <div className="dropdown-menu" aria-labelledby="user_dropdown" style={{right: 0, left: 'auto'}}>
                     <a className="dropdown-item font-weight-bold" href="/">{this.props.user_details.screen_name}</a>
                     <div className="dropdown-divider" />

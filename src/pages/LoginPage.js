@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import TopNavigation from '../components/TopNavigation';
+import PageHeading from '../components/PageHeading';
+import CenteredFooter from '../components/CenteredFooter';
 import LoginForm from '../forms/LoginForm';
 
 class LoginPage extends Component {
@@ -26,7 +27,15 @@ class LoginPage extends Component {
   render() {
     return (
       <React.Fragment>
-        <LoginForm handle_login={this.handle_login} />
+        <div className="container form_content_block">
+          <div className="row">
+            <div className="container" style={{margin: '0 auto', width: '50%'}}>
+              <PageHeading text="Login to Elmer" />
+              <LoginForm handle_login={this.handle_login} />
+              <CenteredFooter />
+            </div>
+          </div>
+        </div>
       </React.Fragment>
     );
   }

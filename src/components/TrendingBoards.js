@@ -35,7 +35,7 @@ class TrendingBoards extends Component {
           <ul class="list-group list-group-flush">
             {boards.length > 0 ? boards.map((board, index) => {
                   return (
-                    <li class="list-group-item board-font-size" key={`trending-boards-key ${index}`}><span class="badge badge-pill badge-light"></span> <a href="#" class="card-link">b/{board.slug}</a></li>
+                    <li class="list-group-item board-font-size" key={`trending-boards-key ${index}`}><span class="badge badge-pill badge-light"></span> <a href="/" class="card-link">b/{board.slug}</a></li>
                   );
             }) : <p>No Boards Found</p>}
           </ul>

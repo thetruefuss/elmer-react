@@ -37,7 +37,7 @@ class SubjectDetail extends Component {
 
             {subject.photo !== null ?
             <div className="card-photo-stlying">
-              <img src={ subject.photo } width="80%" />
+              <img src={ subject.photo } width="80%" alt={ subject.title } />
             </div> : ""
             }
 

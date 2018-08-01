@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import PageHeading from '../components/PageHeading';
 import SubjectList from '../components/SubjectList';
 import TrendingBoards from '../components/TrendingBoards';
@@ -21,7 +22,7 @@ class HomePage extends Component {
             </div>
 
             <div class="col-lg-4 col-md-4">
-              <a href="#" className="btn btn-primary btn-block mt-4" role="button" title="Create new post" style={{fontWeight: 'bold', letterSpacing: '0.8px'}}>CREATE NEW POST</a>
+              <Link to="/new_post" className="btn btn-primary btn-block mt-4" role="button" title="Create new post" style={{fontWeight: 'bold', letterSpacing: '0.8px'}}>CREATE NEW POST</Link>
               <TrendingBoards />
               <Footer />
             </div>
