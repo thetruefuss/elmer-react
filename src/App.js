@@ -5,6 +5,7 @@ import TopNavigation from './components/TopNavigation';
 import HomePage from './pages/HomePage';
 import TrendingPage from './pages/TrendingPage';
 import BoardPage from './pages/BoardPage';
+import CreateSubjectPage from './pages/CreateSubjectPage';
 import AboutPage from './pages/AboutPage';
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
 import TermsOfUsePage from './pages/TermsOfUsePage';
@@ -56,6 +57,7 @@ class App extends Component {
           <Route exact path='/terms' component={TermsOfUsePage} />
           <Route exact path='/login' component={LoginPage} />
           <Route exact path='/signup' component={SignUpPage} />
+          <Route exact path='/new_post' component={CreateSubjectPage} />
         </Switch>
       </React.Fragment>
     );

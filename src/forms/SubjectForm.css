@@ -1,0 +1,16 @@
+#subject_form #id_description,
+#subject_form #id_title,
+#subject_form #id_cover {
+	background-color: #f8f9fa;
+}
+#subject_form #id_description:focus,
+#subject_form #id_title:focus,
+#subject_form #id_cover:focus {
+	background-color: #fff;
+}
+span#required_inp {
+	color: red;
+}
+label {
+	font-weight: bold;
+}
