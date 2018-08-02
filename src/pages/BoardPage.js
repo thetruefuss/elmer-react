@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PageHeading from '../components/PageHeading';
 import BoardCover from '../components/BoardCover';
+import BoardInfo from '../components/BoardInfo';
 import SubjectList from '../components/SubjectList';
 import TrendingBoards from '../components/TrendingBoards';
 import Footer from '../components/Footer';
@@ -43,6 +44,7 @@ class BoardPage extends Component {
 
             <div class="col-lg-4 col-md-4">
               <Link to="/new_post" className="btn btn-primary btn-block mt-4" role="button" title="Create new post" style={{fontWeight: 'bold', letterSpacing: '0.8px'}}>CREATE NEW POST</Link>
+              <BoardInfo board_details={board_details} />
               <TrendingBoards />
               <Footer />
             </div>

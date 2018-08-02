@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import PageHeading from '../components/PageHeading';
 import SubjectList from '../components/SubjectList';
 import TrendingBoards from '../components/TrendingBoards';
+import ActiveThreads from '../components/ActiveThreads';
 import Footer from '../components/Footer';
 
 class HomePage extends Component {
@@ -23,6 +24,7 @@ class HomePage extends Component {
 
             <div class="col-lg-4 col-md-4">
               <Link to="/new_post" className="btn btn-primary btn-block mt-4" role="button" title="Create new post" style={{fontWeight: 'bold', letterSpacing: '0.8px'}}>CREATE NEW POST</Link>
+              <ActiveThreads />
               <TrendingBoards />
               <Footer />
             </div>
