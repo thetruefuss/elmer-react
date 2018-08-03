@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
+import SearchInput from './SearchInput';
 import './TopNavigation.css';
 import elmer_logo from '../images/elmer_logo.png';
 
@@ -17,12 +18,7 @@ class TopNavigation extends Component {
           <div className="collapse navbar-collapse" id="topNavbar">
 
             <ul className="navbar-nav mr-auto">
-              <form className="form-inline">
-                <div className="form-group">
-                  <label htmlFor="search" className="sr-only">Search</label>
-                  <input type="text" className="form-control form-control-sm" id="search" name="query" placeholder="Search Elmer" style={{width:'360px', borderRadius: '3rem', textIndent:'10px', margin:'0px 15px'}} />
-                </div>
-              </form>
+              <SearchInput {...this.props} />
 
               <li className="nav-item">
                 <Link className="nav-link" to="/">Home</Link>

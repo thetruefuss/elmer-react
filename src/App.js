@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, withRouter } from 'react-router-dom';
 import './App.css';
 import TopNavigation from './components/TopNavigation';
 import HomePage from './pages/HomePage';
 import TrendingPage from './pages/TrendingPage';
 import BoardPage from './pages/BoardPage';
+import SearchResultsPage from './pages/SearchResultsPage';
 import CreateSubjectPage from './pages/CreateSubjectPage';
 import CreateBoardPage from './pages/CreateBoardPage';
 import AboutPage from './pages/AboutPage';
@@ -45,6 +46,7 @@ class App extends Component {
     return (
       <React.Fragment>
         <TopNavigation
+          {...this.props}
           logged_in={this.state.logged_in}
           handle_logout={this.handle_logout}
           user_details={this.state.user_details}
@@ -60,10 +62,11 @@ class App extends Component {
           <Route exact path='/signup' component={SignUpPage} />
           <Route exact path='/new_post' component={CreateSubjectPage} />
           <Route exact path='/new_board' component={CreateBoardPage} />
+          <Route exact path='/results' render={(props) => <SearchResultsPage {...props} />} />
         </Switch>
       </React.Fragment>
     );
   }
 }
 
-export default App;
+export default withRouter(App);
