@@ -1,12 +1,21 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import ReactPlaceholder from 'react-placeholder';
+import "react-placeholder/lib/reactPlaceholder.css";
 
 class ActiveThreads extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      threads: [],
+      threads: [
+        "This is just",
+        "a mock data",
+        "for links.",
+        "Just to show",
+        "content placeholder."
+      ],
+      ready: false
     };
   }
 
@@ -19,7 +28,7 @@ class ActiveThreads extends Component {
     })
       .then(res => res.json())
       .then(json => {
-        this.setState({ threads: json });
+        this.setState({ threads: json, ready: true });
       });
   }
 
@@ -36,7 +45,9 @@ class ActiveThreads extends Component {
           <ul className="list-group list-group-flush">
             {threads.length > 0 ? threads.map((thread, index) => {
                   return (
-                    <li className="list-group-item" style={{fontSize: 14}} key={`active-threads-key ${index}`}><Link to={`/s/${thread.board_slug}/${thread.slug}`} class="card-link">{thread.title}</Link></li>
+                    <ReactPlaceholder showLoadingAnimation type="textRow" delay={2000} ready={this.state.ready}>
+                      <li className="list-group-item" style={{fontSize: 14}} key={`active-threads-key ${index}`}><Link to={`/s/${thread.board_slug}/${thread.slug}`} class="card-link">{thread.title}</Link></li>
+                    </ReactPlaceholder>
                   );
             }) : <p>No threads Found</p>}
           </ul>

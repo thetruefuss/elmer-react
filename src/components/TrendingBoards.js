@@ -1,13 +1,22 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './TrendingBoards.css';
+import ReactPlaceholder from 'react-placeholder';
+import "react-placeholder/lib/reactPlaceholder.css";
 
 class TrendingBoards extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      boards: [],
+      boards: [
+        "This is just",
+        "a mock data",
+        "for links.",
+        "Just to show",
+        "content placeholder."
+      ],
+      ready: false
     };
   }
 
@@ -19,7 +28,7 @@ class TrendingBoards extends Component {
     })
       .then(res => res.json())
       .then(json => {
-        this.setState({ boards: json });
+        this.setState({ boards: json, ready: true });
       });
   }
 
@@ -36,7 +45,9 @@ class TrendingBoards extends Component {
           <ul class="list-group list-group-flush">
             {boards.length > 0 ? boards.map((board, index) => {
                   return (
-                    <li class="list-group-item board-font-size" key={`trending-boards-key ${index}`}><span class="badge badge-pill badge-light"></span> <Link to={`/b/${board.slug}`} class="card-link">b/{board.slug}</Link></li>
+                    <ReactPlaceholder showLoadingAnimation type="textRow" delay={2000} ready={this.state.ready}>
+                      <li class="list-group-item board-font-size" key={`trending-boards-key ${index}`}><span class="badge badge-pill badge-light"></span> <Link to={`/b/${board.slug}`} class="card-link">b/{board.slug}</Link></li>
+                    </ReactPlaceholder>
                   );
             }) : <p>No Boards Found</p>}
           </ul>

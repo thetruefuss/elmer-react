@@ -14,7 +14,7 @@ class SubjectList extends Component {
         "This is just a mock data for subjects.",
         "Just to show content placeholder twice."
       ],
-      ready: false,
+      ready: false
     };
   }
 
