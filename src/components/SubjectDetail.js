@@ -4,8 +4,38 @@ import Linkify from 'react-linkify';
 import './SubjectDetail.css';
 
 class SubjectDetail extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      logged_in: localStorage.getItem('token') ? true : false,
+      subject: this.props.subject
+    };
+    this.star_subject = this.star_subject.bind(this);
+  }
+
+  star_subject = (e, slug) => {
+    const url = `http://127.0.0.1:8000/api/frontboard/subjects/star/?subject_slug=${slug}`
+    console.log(url);
+    if (this.state.logged_in) {
+      fetch(url, {
+        headers: {
+          Authorization: `JWT ${localStorage.getItem('token')}`,
+          'Content-Type': 'application/json'
+        },
+      })
+        .then(res => res.json())
+        .then(json => {
+          let subject = {...this.state.subject};
+          subject.stars_count = json.total_points;
+          subject.is_starred = json.is_starred;
+          this.setState({ subject });
+        });
+    }
+  }
+
   render() {
-    const { subject } = this.props;
+    const { subject } = this.state;
     return (
       <div className="card card-styling">
         <div className="card-body card-body-styling">
@@ -13,7 +43,8 @@ class SubjectDetail extends Component {
         <div className="star-partition">
           <a href="#"
              style={{textDecoration: 'none'}}
-             id="js-star-subject">
+             id="js-star-subject"
+             onClick={e => this.star_subject(e, this.state.subject.slug)}>
              {subject.is_starred === true ?
                <i className="fa fa-star fa-lg" aria-hidden="true" id="star_icon"></i> :
                <i className="fa fa-star-o fa-lg" aria-hidden="true" id="star_icon"></i>
