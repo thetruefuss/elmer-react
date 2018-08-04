@@ -21,7 +21,8 @@ class TrendingBoards extends Component {
   }
 
   componentDidMount() {
-    fetch('http://127.0.0.1:8000/api/frontboard/boards/trending/', {
+    const url = 'http://127.0.0.1:8000/api/frontboard/boards/trending/';
+    fetch(url, {
       headers: {
         'Content-Type': 'application/json'
       },
@@ -37,16 +38,17 @@ class TrendingBoards extends Component {
 
     return (
       <React.Fragment>
-        <br />
-        <div class="card border-light">
-          <div class="card-header text-center font-weight-bold trending-boards-header">
+        <div className="card border-light">
+          <div className="card-header text-center font-weight-bold trending-boards-header">
             Trending Boards
           </div>
-          <ul class="list-group list-group-flush">
+          <ul className="list-group list-group-flush">
             {boards.length > 0 ? boards.map((board, index) => {
                   return (
                     <ReactPlaceholder showLoadingAnimation type="textRow" delay={2000} ready={this.state.ready}>
-                      <li class="list-group-item board-font-size" key={`trending-boards-key ${index}`}><span class="badge badge-pill badge-light"></span> <Link to={`/b/${board.slug}`} class="card-link">b/{board.slug}</Link></li>
+                      <li className="list-group-item board-font-size" key={`trending-boards-key ${index}`}>
+                        <Link to={`/b/${board.slug}`} className="card-link">b/{board.slug}</Link>
+                      </li>
                     </ReactPlaceholder>
                   );
             }) : <p>No Boards Found</p>}
