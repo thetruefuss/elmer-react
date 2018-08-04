@@ -4,6 +4,7 @@ import './App.css';
 import TopNavigation from './components/TopNavigation';
 import HomePage from './pages/HomePage';
 import TrendingPage from './pages/TrendingPage';
+import BoardsListPage from './pages/BoardsListPage';
 import BoardPage from './pages/BoardPage';
 import SearchResultsPage from './pages/SearchResultsPage';
 import CreateSubjectPage from './pages/CreateSubjectPage';
@@ -54,6 +55,7 @@ class App extends Component {
         <Switch>
           <Route exact path='/' component={HomePage} />
           <Route exact path='/trending' component={TrendingPage} />
+          <Route exact path='/boards' component={BoardsListPage} />
           <Route exact path='/b/:board_slug' component={BoardPage} />
           <Route exact path='/about' component={AboutPage} />
           <Route exact path='/privacy' component={PrivacyPolicyPage} />
