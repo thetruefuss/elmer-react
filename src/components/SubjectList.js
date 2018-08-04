@@ -29,7 +29,11 @@ class SubjectList extends Component {
       })
         .then(res => res.json())
         .then(json => {
-          this.setState({ subjects: json.results, ready: true });
+          if (json.results.length > 0) {
+            this.setState({ subjects: json.results, ready: true });
+          } else {
+            this.setState({ subjects: [], ready: true });
+          }
         });
     } else {
       fetch(url, {
@@ -40,9 +44,9 @@ class SubjectList extends Component {
         .then(res => res.json())
         .then(json => {
           if (json.results.length > 0) {
-            this.setState({ subjects: json.results });
+            this.setState({ subjects: json.results, ready: true });
           } else {
-            this.setState({ subjects: []});
+            this.setState({ subjects: [], ready: true });
           }
         });
     }
