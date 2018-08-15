@@ -6,11 +6,20 @@ import 'jquery/dist/jquery.slim.min.js';
 import 'popper.js/dist/popper.min.js';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import store from './store';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
+import setAuthorizationHeader from './utils/setAuthorizationHeader';
+
+if (localStorage.token) {
+  setAuthorizationHeader(localStorage.token);
+}
 
 ReactDOM.render(
   <Router>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </Router>, document.getElementById('root'));
 registerServiceWorker();
