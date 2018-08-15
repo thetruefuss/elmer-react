@@ -3,17 +3,17 @@ import './SubjectPlaceholder.css';
 import { TextBlock, TextRow, RectShape } from 'react-placeholder/lib/placeholders';
 
 const SubjectPlaceholder = (
-  <div className="card card-styling">
-    <div className="card-body card-body-styling">
+  <div className="card placeholer-styling">
+    <div className="card-body placeholer-body-styling">
 
-      <div className="star-partition">
+      <div className="placeholer-star-partition">
         <i className="fa fa-star-o fa-lg" aria-hidden="true" id="star_icon"></i>
         <br />
         <RectShape color='#E0E0E0' style={{ width: 25, height: 25, margin: '10px auto' }} />
       </div>
 
-      <div className="body-partition">
-        <p className="post-info text-muted">
+      <div className="placeholer-body-partition">
+        <p className="placeholer-post-info text-muted">
           <TextRow color='#E0E0E0' style={{ marginBottom: 5 }} />
         </p>
         <TextBlock color='#E0E0E0' rows={2} style={{ height: 50 }} />

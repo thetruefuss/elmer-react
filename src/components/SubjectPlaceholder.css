@@ -1,22 +1,22 @@
-.card-styling {
+.placeholer-styling {
 	margin-bottom: 10px;
 }
-.card-body-styling {
+.placeholer-body-styling {
 	padding: 10px;
 }
-.star-partition {
+.placeholer-star-partition {
 	float: left;
 	width: 10%;
 	text-align: center;
 	padding-top: 10px;
 }
-.body-partition {
+.placeholer-body-partition {
 	float: right;
 	width: 90%;
 }
 i#star_icon.fa-lg {
 	font-size: 1.6em;
 }
-.post-info {
+.placeholer-post-info {
 	width: 40%;
 }
