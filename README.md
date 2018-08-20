@@ -1,10 +1,6 @@
 # Elmer React
 
-Elmer React is a user interface for **[elmer](https://github.com/thetruefuss/elmer)** built with [React](https://reactjs.org/).
-
-**P.S:** Elmer is a social network inspired by reddit.
-
-![Elmer Screenshot](https://image.ibb.co/drWiM8/elmer_screenshot.jpg "Elmer Screenshot")
+Elmer React is a user interface for **[elmer](https://github.com/thetruefuss/elmer)** built with [React](https://reactjs.org/) and [Redux](https://redux.js.org/).
 
 ### Installation Guide
 
