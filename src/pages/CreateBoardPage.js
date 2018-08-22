@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import PropTypes from "prop-types";
+import axios from 'axios';
 import PageHeading from '../components/PageHeading';
 import CenteredFooter from '../components/CenteredFooter';
 import BoardForm from '../forms/BoardForm';
@@ -8,9 +10,7 @@ class CreateBoardPage extends Component {
     document.title = "New Board | Elmer"
   }
 
-  handle_board_submission = (e, data) => {
-    e.preventDefault();
-    console.log(data);
+  submit = data => {
     const formData = new FormData();
     formData.append('title', data.title);
     formData.append('description', data.description);
@@ -19,18 +19,9 @@ class CreateBoardPage extends Component {
     for (var pair of formData.entries()) {
         console.log(pair[0]+ ', ' + pair[1]);
     }
-    fetch('http://127.0.0.1:8000/api/frontboard/boards/create/', {
-      method: 'POST',
-      headers: {
-        Authorization: `JWT ${localStorage.getItem('token')}`
-      },
-      body: formData
-    })
-      .then(res => res.json())
-      .then(json => {
-        console.log(json);
-        window.location.href = "/";
-      });
+    axios.post("http://127.0.0.1:8000/api/frontboard/boards/create/", formData)
+    .then(res => console.log(res))
+    .then(() => this.props.history.push("/"));
   };
 
   render() {
@@ -40,7 +31,7 @@ class CreateBoardPage extends Component {
           <div className="row">
             <div className="container" style={{margin: '0 auto', width: '50%'}}>
               <PageHeading text="Create new board" />
-              <BoardForm handle_board_submission={this.handle_board_submission} />
+              <BoardForm submit={this.submit} />
               <CenteredFooter />
             </div>
           </div>
@@ -49,5 +40,11 @@ class CreateBoardPage extends Component {
     );
   }
 }
+
+CreateBoardPage.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired
+  }).isRequired,
+};
 
 export default CreateBoardPage;
