@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import axios from 'axios';
 import PageHeading from '../components/PageHeading';
 import CenteredFooter from '../components/CenteredFooter';
 import SubjectForm from '../forms/SubjectForm';
@@ -8,9 +10,7 @@ class CreateSubjectPage extends Component {
     document.title = "New Subject | Elmer"
   }
 
-  handle_subject_submission = (e, data) => {
-    e.preventDefault();
-    console.log(data);
+  submit = data => {
     const formData = new FormData();
     formData.append('title', data.title);
     formData.append('body', data.body);
@@ -20,18 +20,9 @@ class CreateSubjectPage extends Component {
     for (var pair of formData.entries()) {
         console.log(pair[0]+ ', ' + pair[1]);
     }
-    fetch('http://127.0.0.1:8000/api/frontboard/subjects/create/', {
-      method: 'POST',
-      headers: {
-        Authorization: `JWT ${localStorage.getItem('token')}`
-      },
-      body: formData
-    })
-      .then(res => res.json())
-      .then(json => {
-        console.log(json);
-        window.location.href = "/";
-      });
+    axios.post("http://127.0.0.1:8000/api/frontboard/subjects/create/", formData)
+    .then(res => console.log(res))
+    .then(() => this.props.history.push("/"));
   };
 
   render() {
@@ -41,7 +32,7 @@ class CreateSubjectPage extends Component {
           <div className="row">
             <div className="container" style={{margin: '0 auto', width: '50%'}}>
               <PageHeading text="Compose a new post" />
-              <SubjectForm handle_subject_submission={this.handle_subject_submission} />
+              <SubjectForm submit={this.submit} />
               <CenteredFooter />
             </div>
           </div>
@@ -50,5 +41,11 @@ class CreateSubjectPage extends Component {
     );
   }
 }
+
+CreateSubjectPage.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired
+  }).isRequired,
+};
 
 export default CreateSubjectPage;

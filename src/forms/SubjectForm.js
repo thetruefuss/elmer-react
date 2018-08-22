@@ -1,50 +1,58 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import axios from 'axios';
 import Recaptcha from 'react-recaptcha';
 import './SubjectForm.css';
 
 class SubjectForm extends Component {
   state = {
-    title: '',
-    body: '',
-    photo: null,
-    board: null,
-    board_options: []
+    data: {
+      title: "",
+      body: "",
+      photo: null,
+      board: null,
+      board_options: []
+    },
+    errors: {}
   };
 
   componentDidMount() {
-    fetch('http://127.0.0.1:8000/api/frontboard/boards/user_subscribed/', {
-      headers: {
-        Authorization: `JWT ${localStorage.getItem('token')}`,
-        'Content-Type': 'application/json'
-      },
-    })
-      .then(res => res.json())
-      .then(json => {
-        this.setState({ board_options: json });
-      });
+    axios.get("http://127.0.0.1:8000/api/frontboard/boards/user_subscribed/")
+    .then(res => this.setState({
+      data: { ...this.state.data, board_options: res.data }
+    }))
   }
 
-  handle_change = e => {
-    const name = e.target.name;
-    const value = e.target.value;
-    this.setState(prevstate => {
-      const newState = { ...prevstate };
-      newState[name] = value;
-      return newState;
+  onChange = e =>
+    this.setState({
+      data: { ...this.state.data, [e.target.name]: e.target.value }
     });
+
+  onChangePhoto = e =>
+    this.setState({
+      data: { ...this.state.data, [e.target.name]: e.target.files[0] }
+    });
+
+  onChangeBoard = e =>
+    this.setState({
+      data: { ...this.state.data, board: e.target.value }
+    });
+
+  onSubmit = e => {
+    e.preventDefault();
+    const errors = this.validate(this.state.data);
+    this.setState({ errors });
+    if (Object.keys(errors).length === 0) {
+      this.props
+        .submit(this.state.data);
+    }
   };
 
-  handle_photo_change = e => {
-    this.setState({photo: e.target.files[0]});
-  };
-
-  handle_board_change = e => {
-    const value = e.target.value;
-    this.setState(prevstate => {
-      const newState = { ...prevstate };
-      newState['board'] = value;
-      return newState;
-    });
+  validate = data => {
+    const errors = {};
+    if (!data.title) errors.title = "title required.";
+    if (!data.board) errors.board = "board required.";
+    return errors;
   };
 
   verify_callback = response => {
@@ -56,35 +64,38 @@ class SubjectForm extends Component {
   }
 
   render() {
-    const boardOptions = this.state.board_options.map((board) =>
+    const { data, errors } = this.state;
+    const boardOptions = this.state.data.board_options.map((board) =>
                 <option key={board.id} value={board.id}>{board.title}</option>
             );
     return (
       <React.Fragment>
-      <form onSubmit={e => this.props.handle_subject_submission(e, this.state)} method="post" encType="multipart/form-data" id="subject_form">
+      <form onSubmit={this.onSubmit} encType="multipart/form-data" id="subject_form">
         <div className="form-group">
           <label htmlFor="id_title"><span id="required_inp">*</span>Title</label>
-          <input type="text" className="form-control" id="id_title" maxLength={150} name="title" value={this.state.title} onChange={this.handle_change} required />
+          <input type="text" className="form-control" id="id_title" maxLength={150} name="title" value={data.title} onChange={this.onChange} />
           <small className="form-text text-muted">
             You can <b>u/mention</b> other members in your post anywhere.
           </small>
         </div>
+        {errors.title && <span>{errors.title}</span>}
         <div className="form-group">
           <label htmlFor="id_description">Description</label>
-          <textarea className="form-control" cols={40} rows={4} id="id_description" name="body" maxLength={2000} placeholder="Describe your subject verbosely" value={this.state.body} onChange={this.handle_change} />
+          <textarea className="form-control" cols={40} rows={4} id="id_description" name="body" maxLength={2000} placeholder="Describe your subject verbosely" value={data.body} onChange={this.onChange} />
         </div>
         <div className="form-group">
           <label htmlFor="id_photo">Add image</label>
-          <input type="file" className="form-control-file" id="id_photo" name="photo" accept="image/*" onChange={this.handle_photo_change} />
+          <input type="file" className="form-control-file" id="id_photo" name="photo" accept="image/*" onChange={this.onChangePhoto} />
         </div>
         <div className="form-group">
           <label htmlFor="id_cover"><span id="required_inp">*</span>Choose a board</label>
-          <select className="form-control" id="id_cover" value={this.state.board} onChange={this.handle_board_change} required>
+          <select className="form-control" id="id_cover" value={data.board} onChange={this.onChangeBoard}>
           <option selected></option>
           {boardOptions}
           </select>
           <p className="text-muted">You need to <b>subscribe</b> a board, before posting in it.</p>
         </div>
+        {errors.board && <span>{errors.board}</span>}
         <Recaptcha
           sitekey="6LcxazUUAAAAAJstEHfmrSDE5QFqSrPUHqozW9XQ"
           render="explicit"
@@ -98,5 +109,9 @@ class SubjectForm extends Component {
     );
   }
 }
+
+SubjectForm.propTypes = {
+  submit: PropTypes.func.isRequired
+};
 
 export default SubjectForm;
