@@ -10,10 +10,15 @@ import { Provider } from 'react-redux';
 import store from './store';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
+import { userLoggedIn } from "./actions/auth";
 import setAuthorizationHeader from './utils/setAuthorizationHeader';
 
 if (localStorage.token) {
+  const user = {
+    token: localStorage.token
+  };
   setAuthorizationHeader(localStorage.token);
+  store.dispatch(userLoggedIn(user));
 }
 
 ReactDOM.render(
