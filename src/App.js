@@ -16,42 +16,10 @@ import LoginPage from './pages/LoginPage';
 import SignUpPage from './pages/SignUpPage';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      logged_in: localStorage.getItem('token') ? true : false,
-      user_details: {}
-    };
-  }
-
-  componentDidMount() {
-    if (this.state.logged_in) {
-      fetch('http://127.0.0.1:8000/api/users/current_user/', {
-        headers: {
-          Authorization: `JWT ${localStorage.getItem('token')}`
-        }
-      })
-        .then(res => res.json())
-        .then(json => {
-          this.setState({ user_details: json });
-        });
-    }
-  }
-
-  handle_logout = () => {
-    localStorage.removeItem('token');
-    this.setState({ logged_in: false, user_details: {} });
-  };
-
   render() {
     return (
       <React.Fragment>
-        <TopNavigation
-          {...this.props}
-          logged_in={this.state.logged_in}
-          handle_logout={this.handle_logout}
-          user_details={this.state.user_details}
-         />
+        <TopNavigation {...this.props} />
         <Switch>
           <Route exact path='/' component={HomePage} />
           <Route exact path='/trending' component={TrendingPage} />
