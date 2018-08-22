@@ -1,28 +1,18 @@
 import React, { Component } from 'react';
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 import PageHeading from '../components/PageHeading';
 import CenteredFooter from '../components/CenteredFooter';
 import LoginForm from '../forms/LoginForm';
+import { login } from "../actions/auth";
 
 class LoginPage extends Component {
   componentDidMount() {
     document.title = "Login | Elmer"
   }
 
-  handle_login = (e, data) => {
-    e.preventDefault();
-    fetch('http://127.0.0.1:8000/api/auth/token/obtain/', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-    })
-      .then(res => res.json())
-      .then(json => {
-        localStorage.setItem('token', json.token);
-        window.location.href = "/";
-      });
-  };
+  submit = data =>
+    this.props.login(data).then(() => this.props.history.push("/"));
 
   render() {
     return (
@@ -31,7 +21,7 @@ class LoginPage extends Component {
           <div className="row">
             <div className="container" style={{margin: '0 auto', width: '50%'}}>
               <PageHeading text="Login to Elmer" />
-              <LoginForm handle_login={this.handle_login} />
+              <LoginForm submit={this.submit} />
               <CenteredFooter />
             </div>
           </div>
@@ -40,4 +30,12 @@ class LoginPage extends Component {
     );
   }
 }
-export default LoginPage;
+
+LoginPage.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired
+  }).isRequired,
+  login: PropTypes.func.isRequired
+};
+
+export default connect(null, { login })(LoginPage);
