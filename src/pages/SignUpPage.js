@@ -1,29 +1,17 @@
 import React, { Component } from 'react';
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 import PageHeading from '../components/PageHeading';
 import CenteredFooter from '../components/CenteredFooter';
 import SignUpForm from '../forms/SignUpForm';
+import { signup } from "../actions/users";
 
-class LoginPage extends Component {
+class SignUpPage extends Component {
   componentDidMount() {
     document.title = "Sign Up | Elmer"
   }
-
-  handle_signup = (e, data) => {
-    e.preventDefault();
-    fetch('http://127.0.0.1:8000/api/users/signup/', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-    })
-      .then(res => res.json())
-      .then(json => {
-        console.log(json);
-        localStorage.setItem('token', json.token);
-        window.location.href = "/";
-      });
-  };
+  submit = data =>
+    this.props.signup(data).then(() => this.props.history.push("/"));
 
   render() {
     return (
@@ -32,7 +20,7 @@ class LoginPage extends Component {
           <div className="row">
             <div className="container" style={{margin: '0 auto', width: '50%'}}>
               <PageHeading text="Register to Elmer" />
-              <SignUpForm handle_signup={this.handle_signup} />
+              <SignUpForm submit={this.submit} />
               <CenteredFooter />
             </div>
           </div>
@@ -41,4 +29,12 @@ class LoginPage extends Component {
     );
   }
 }
-export default LoginPage;
+
+SignUpPage.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired
+  }).isRequired,
+  signup: PropTypes.func.isRequired
+};
+
+export default connect(null, { signup })(SignUpPage);
