@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from "prop-types";
 import { Switch, Route, withRouter } from 'react-router-dom';
 import './App.css';
 import TopNavigation from './components/TopNavigation';
@@ -14,29 +15,34 @@ import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
 import TermsOfUsePage from './pages/TermsOfUsePage';
 import LoginPage from './pages/LoginPage';
 import SignUpPage from './pages/SignUpPage';
+import UserRoute from './routes/UserRoute';
+import GuestRoute from './routes/GuestRoute';
 
-class App extends Component {
-  render() {
-    return (
-      <React.Fragment>
-        <TopNavigation {...this.props} />
-        <Switch>
-          <Route exact path='/' component={HomePage} />
-          <Route exact path='/trending' component={TrendingPage} />
-          <Route exact path='/boards' component={BoardsListPage} />
-          <Route exact path='/b/:board_slug' component={BoardPage} />
-          <Route exact path='/about' component={AboutPage} />
-          <Route exact path='/privacy' component={PrivacyPolicyPage} />
-          <Route exact path='/terms' component={TermsOfUsePage} />
-          <Route exact path='/login' component={LoginPage} />
-          <Route exact path='/signup' component={SignUpPage} />
-          <Route exact path='/new_post' component={CreateSubjectPage} />
-          <Route exact path='/new_board' component={CreateBoardPage} />
-          <Route exact path='/results' render={(props) => <SearchResultsPage {...props} />} />
-        </Switch>
-      </React.Fragment>
-    );
-  }
-}
+const App = ({ location }) => (
+  <React.Fragment>
+    <TopNavigation {...this.props} />
+    <Switch>
+      <Route location={location} exact path='/' component={HomePage} />
+      <Route location={location} exact path='/trending' component={TrendingPage} />
+      <Route location={location} exact path='/boards' component={BoardsListPage} />
+      <Route location={location} exact path='/b/:board_slug' component={BoardPage} />
+      <Route location={location} exact path='/about' component={AboutPage} />
+      <Route location={location} exact path='/privacy' component={PrivacyPolicyPage} />
+      <Route location={location} exact path='/terms' component={TermsOfUsePage} />
+      <GuestRoute location={location} exact path='/login' component={LoginPage} />
+      <GuestRoute location={location} exact path='/signup' component={SignUpPage} />
+      <UserRoute location={location} exact path='/new_post' component={CreateSubjectPage} />
+      <UserRoute location={location} exact path='/new_board' component={CreateBoardPage} />
+      <Route location={location} exact path='/results' render={(props) => <SearchResultsPage {...props} />} />
+    </Switch>
+  </React.Fragment>
+);
+
+App.propTypes = {
+  location: PropTypes.shape({
+    pathname: PropTypes.string.isRequired
+  }).isRequired,
+};
+
 
 export default withRouter(App);
