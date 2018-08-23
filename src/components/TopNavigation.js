@@ -21,7 +21,7 @@ class TopNavigation extends Component {
       axios.get("http://127.0.0.1:8000/api/users/current_user/").then(res => this.setState({user_details: res.data}))
     }
   }
-  
+
   render() {
     return (
       <nav className="navbar sticky-top navbar-expand-lg navbar-expand-md navbar-light extra_navbar_styling">
@@ -35,7 +35,7 @@ class TopNavigation extends Component {
           <div className="collapse navbar-collapse" id="topNavbar">
 
             <ul className="navbar-nav mr-auto">
-              <SearchInput {...this.props} />
+              <SearchInput />
 
               <li className="nav-item">
                 <Link className="nav-link" to="/">Home</Link>

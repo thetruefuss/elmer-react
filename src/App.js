@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from "prop-types";
+import { connect } from "react-redux";
 import { Switch, Route, withRouter } from 'react-router-dom';
 import './App.css';
 import TopNavigation from './components/TopNavigation';
@@ -18,9 +19,9 @@ import SignUpPage from './pages/SignUpPage';
 import UserRoute from './routes/UserRoute';
 import GuestRoute from './routes/GuestRoute';
 
-const App = ({ location }) => (
+const App = ({ location, isAuthenticated }) => (
   <React.Fragment>
-    <TopNavigation {...this.props} />
+    <TopNavigation />
     <Switch>
       <Route location={location} exact path='/' component={HomePage} />
       <Route location={location} exact path='/trending' component={TrendingPage} />
@@ -42,7 +43,13 @@ App.propTypes = {
   location: PropTypes.shape({
     pathname: PropTypes.string.isRequired
   }).isRequired,
+  isAuthenticated: PropTypes.bool.isRequired
 };
 
+function mapStateToProps(state) {
+  return {
+    isAuthenticated: !!state.user.email
+  };
+}
 
-export default withRouter(App);
+export default connect(mapStateToProps)(App);
