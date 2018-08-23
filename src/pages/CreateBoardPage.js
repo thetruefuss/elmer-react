@@ -20,9 +20,10 @@ class CreateBoardPage extends Component {
         console.log(pair[0]+ ', ' + pair[1]);
     }
     axios.post("http://127.0.0.1:8000/api/frontboard/boards/create/", formData)
-    .then(res => console.log(res))
-    .then(() => this.props.history.push("/"));
+    .then(res => this.goToBoard(res.data.slug));
   };
+
+  goToBoard = slug => this.props.history.push(`/b/${slug}`);
 
   render() {
     return (
