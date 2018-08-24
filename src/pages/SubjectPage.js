@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import PageHeading from '../components/PageHeading';
 import BoardCover from '../components/BoardCover';
 import BoardInfo from '../components/BoardInfo';
+import CommentList from '../components/CommentList';
 import Subject from '../components/Subject';
 import TrendingBoards from '../components/TrendingBoards';
 import Footer from '../components/Footer';
@@ -31,6 +32,7 @@ class BoardPage extends Component {
 
   render() {
     const { board_details, subject_details } = this.state;
+    const comment_url = `http://127.0.0.1:8000/api/frontboard/comments/${this.props.match.params.subject_slug}/`;
     return (
       <React.Fragment>
         <BoardCover cover_url={board_details.cover} />
@@ -40,6 +42,7 @@ class BoardPage extends Component {
             <div className="col-lg-8 col-md-8">
               <PageHeading text={board_details.title} />
               <Subject slug={this.props.match.params.subject_slug} />
+              <CommentList url={comment_url} />
             </div>
 
             <div class="col-lg-4 col-md-4">
