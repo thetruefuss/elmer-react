@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Linkify from 'react-linkify';
+import axios from 'axios';
 import './Subject.css';
 
 class Subject extends Component {
@@ -16,16 +17,10 @@ class Subject extends Component {
   }
 
   componentDidMount() {
-    fetch(`http://127.0.0.1:8000/api/frontboard/subjects/${this.props.slug}`, {
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-      .then(res => res.json())
-      .then(json => {
-        this.setState({ subject: json, author: json.author });
-        console.log(this.state.author);
-      });
+    const url = `http://127.0.0.1:8000/api/frontboard/subjects/${this.props.slug}`;
+    axios.get(url).then(res => {
+      this.setState({ subject: res.data, author: res.data.author });
+    });
   }
 
   star_subject = (e, slug) => {
@@ -51,7 +46,7 @@ class Subject extends Component {
   render() {
     const { subject } = this.state;
     return (
-      <div className="card card-styling">
+      <div className="card card-styling" style={{ border: 0 }}>
         <div className="card-body card-body-styling">
 
         <div className="star-partition">
@@ -94,6 +89,24 @@ class Subject extends Component {
               </a> &bull; <a href="/" className="share_link" data-clipboard-text="">
                  <i className="fa fa-share fa-md" aria-hidden="true"></i> Share
               </a>
+              <div style={{ float: 'right' }}>
+                {subject.is_author ? (
+                  <React.Fragment>
+                    <a href="/"
+                       title="edit subject">
+                       <i class="fa fa-edit fa-lg"></i> Edit</a> &bull;
+                    <a href="/"
+                       title="delete subject"
+                       id="delete_subject">
+                       <i class="fa fa-trash-o fa-lg"></i> Delete</a>
+                  </React.Fragment>
+                  ) : (
+                  <a href="/"
+                     title="report this subject"
+                     id="report_link">
+                     <i class="fa fa-flag-o fa-lg"></i> Report</a>
+                )}
+              </div>
             </div>
           </div>
         </div>
