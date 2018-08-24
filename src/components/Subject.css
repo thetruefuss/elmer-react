@@ -1,0 +1,44 @@
+.card-styling {
+	margin-bottom: 10px;
+}
+.card-body-styling {
+	padding: 10px;
+}
+.star-partition {
+	float: left;
+	width: 10%;
+	text-align: center;
+	padding-top: 10px;
+}
+.body-partition {
+	float: right;
+	width: 90%;
+}
+.card-photo-stlying {
+	text-align: center;
+	padding: 5px;
+}
+.card-bottom-area {
+	padding-top: 10px;
+	font-weight: 600;
+	font-size: 12px;
+}
+.card-bottom-area a {
+	text-decoration: none;
+}
+i#star_icon.fa-lg {
+	font-size: 1.6em;
+}
+span#js-star-count {
+	font-weight: 600;
+}
+.board-link {
+	text-decoration: none;
+	font-weight: 600;
+}
+.profile-link {
+	text-decoration: none;
+}
+.post-info {
+	font-size: 11px;
+}
