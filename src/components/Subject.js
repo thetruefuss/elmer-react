@@ -9,7 +9,8 @@ class Subject extends Component {
 
     this.state = {
       logged_in: localStorage.getItem('token') ? true : false,
-      subject: {}
+      subject: {},
+      author: {}
     };
     this.star_subject = this.star_subject.bind(this);
   }
@@ -22,8 +23,8 @@ class Subject extends Component {
     })
       .then(res => res.json())
       .then(json => {
-        this.setState({ subject: json });
-        console.log(this.state.subject.author.screen_name);
+        this.setState({ subject: json, author: json.author });
+        console.log(this.state.author);
       });
   }
 
@@ -73,7 +74,7 @@ class Subject extends Component {
                     title="visit board"
                     className="board-link">b/{ subject.board }</Link> &bull; Posted by <a href="/"
                                                                                           title="view profile"
-                                                                                          className="profile-link">Ali Saleh</a>
+                                                                                          className="profile-link">{ this.state.author.screen_name }</a>
                                                                                   <span> { subject.created_naturaltime }</span>
             </p>
             <h5><Link to={`/s/${subject.board}/${subject.slug}`} className="card-link">{ subject.title}</Link></h5>
