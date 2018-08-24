@@ -63,7 +63,7 @@ class SubjectDetail extends Component {
                                                                                           className="profile-link">{ subject.author.screen_name }</a>
                                                                                   <span> { subject.created_naturaltime }</span>
             </p>
-            <h5><a href="/" className="card-link">{ subject.title}</a></h5>
+            <h5><Link to={`/s/${subject.board}/${subject.slug}`} className="card-link">{ subject.title}</Link></h5>
             <Linkify>
               <p>{ subject.body }</p>
             </Linkify>
