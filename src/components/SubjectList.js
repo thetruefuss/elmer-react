@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import ReactPlaceholder from 'react-placeholder';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import ReactPlaceholder from "react-placeholder";
 import "react-placeholder/lib/reactPlaceholder.css";
-import SubjectPlaceholder from './SubjectPlaceholder';
-import SubjectDetail from './SubjectDetail';
-import { fetchSubjects } from '../actions/subjects';
+import SubjectPlaceholder from "./SubjectPlaceholder";
+import SubjectDetail from "./SubjectDetail";
+import { fetchSubjects } from "../actions/subjects";
 
 class SubjectList extends Component {
   componentDidMount() {
@@ -18,13 +18,21 @@ class SubjectList extends Component {
 
     return (
       <React.Fragment>
-        {subjects.length > 0 ? subjects.map((subject, index) => {
-              return (
-                <ReactPlaceholder showLoadingAnimation delay={2000} ready={this.props.ready} customPlaceholder={SubjectPlaceholder}>
-                  <SubjectDetail subject={subject} key={index} />
-                </ReactPlaceholder>
-              );
-        }) : <p>No Posts Found</p>}
+        {subjects.length > 0 ? (
+          subjects.map((subject, index) => {
+            return (
+              <ReactPlaceholder
+                showLoadingAnimation
+                delay={2000}
+                ready={this.props.ready}
+                customPlaceholder={SubjectPlaceholder}>
+                <SubjectDetail subject={subject} key={index} />
+              </ReactPlaceholder>
+            );
+          })
+        ) : (
+          <p>No Posts Found</p>
+        )}
       </React.Fragment>
     );
   }
@@ -42,4 +50,7 @@ const mapStateToProps = state => ({
   ready: state.subjects.ready
 });
 
-export default connect(mapStateToProps, { fetchSubjects })(SubjectList);
+export default connect(
+  mapStateToProps,
+  { fetchSubjects }
+)(SubjectList);
