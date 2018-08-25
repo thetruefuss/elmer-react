@@ -13,6 +13,12 @@ class CommentList extends Component {
     this.props.fetchComments(url);
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.newComment) {
+      this.props.comments.push(nextProps.newComment);
+    }
+  }
+
   render() {
     const { comments } = this.props;
 
@@ -50,7 +56,8 @@ CommentList.propTypes = {
 
 const mapStateToProps = state => ({
   comments: state.commentReducer.comments,
-  ready: state.commentReducer.ready
+  ready: state.commentReducer.ready,
+  newComment: state.commentReducer.comment
 });
 
 export default connect(mapStateToProps, { fetchComments })(CommentList);
