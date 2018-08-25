@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Link } from 'react-router-dom';
-import './LoginForm.css';
+import { Link } from "react-router-dom";
+import "./LoginForm.css";
 
 class LoginForm extends Component {
   state = {
@@ -24,9 +24,7 @@ class LoginForm extends Component {
     if (Object.keys(errors).length === 0) {
       this.props
         .submit(this.state.data)
-        .catch(err =>
-          this.setState({ errors: err.response.data })
-        );
+        .catch(err => this.setState({ errors: err.response.data }));
     }
   };
 
@@ -43,32 +41,58 @@ class LoginForm extends Component {
     return (
       <React.Fragment>
         {errors.non_field_errors && (
-          <div className="alert alert-danger alert-dismissible fade show" role="alert">
-            Please enter a correct username and password. Note that both fields are case-sensitive.
-            <button type="button" className="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
+          <div
+            className="alert alert-danger alert-dismissible fade show"
+            role="alert">
+            Please enter a correct username and password. Note that both fields
+            are case-sensitive.
+            <button
+              type="button"
+              className="close"
+              data-dismiss="alert"
+              aria-label="Close">
+              <span aria-hidden="true">&times;</span>
             </button>
           </div>
         )}
         <form onSubmit={this.onSubmit} id="login_form">
           <div className="form-group">
             <label htmlFor="id_username">Username</label>
-            <input type="text" className="form-control" id="id_username" name="username" value={data.username} onChange={this.onChange} />
+            <input
+              type="text"
+              className="form-control"
+              id="id_username"
+              name="username"
+              value={data.username}
+              onChange={this.onChange}
+            />
           </div>
           {errors.username && <span>{errors.username}</span>}
           <div className="form-group">
             <label htmlFor="id_password">Password</label>
-            <input type="password" className="form-control" id="id_password" name="password" value={data.password} onChange={this.onChange} />
+            <input
+              type="password"
+              className="form-control"
+              id="id_password"
+              name="password"
+              value={data.password}
+              onChange={this.onChange}
+            />
           </div>
           {errors.password && <span>{errors.password}</span>}
-          <button type="submit" className="btn btn-primary btn-block">Login</button>
-          <div className="text-center" style={{marginTop: 10}}>
+          <button type="submit" className="btn btn-primary btn-block">
+            Login
+          </button>
+          <div className="text-center" style={{ marginTop: 10 }}>
             <a href="/">Forgot password?</a>
           </div>
         </form>
-        <div className="card text-center" style={{marginTop: 15}}>
+        <div className="card text-center" style={{ marginTop: 15 }}>
           <div className="card-body">
-            Dont have an account? <Link to="/signup" className="card-link">Sign up</Link>
+            Dont have an account?{" "}
+            <Link to="/signup" className="card-link">
+              Sign up
+            </Link>
           </div>
         </div>
       </React.Fragment>
