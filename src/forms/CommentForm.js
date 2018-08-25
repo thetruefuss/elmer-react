@@ -1,14 +1,28 @@
 import React, { Component } from 'react';
 import PropTypes from "prop-types";
+import axios from 'axios';
 
 class CommentForm extends Component {
   state = {
     data: {
       body: "",
-      subject: 1
+      subject: null
     },
     errors: {}
   };
+
+  componentDidMount() {
+    /**
+    * Change URL to get the <ID> only by passing <Slug>. 
+    */
+    const url = `http://127.0.0.1:8000/api/frontboard/subjects/${this.props.slug}`;
+    axios.get(url).then(res => {
+      this.setState({
+        data: { ...this.state.data, subject: res.data.id }
+      });
+      console.log(this.state);
+    });
+  }
 
   onChange = e =>
     this.setState({

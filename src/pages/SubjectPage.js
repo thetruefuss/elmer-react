@@ -48,7 +48,7 @@ class SubjectPage extends Component {
               <PageHeading text={board_details.title} />
               <Subject slug={this.props.match.params.subject_slug} />
               <CommentList url={comment_url} />
-              <CommentForm submit={this.submit} />
+              <CommentForm submit={this.submit} slug={this.props.match.params.subject_slug} />
             </div>
 
             <div class="col-lg-4 col-md-4">
