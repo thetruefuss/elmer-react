@@ -67,7 +67,6 @@ CommentDetail.propTypes = {
     is_commenter: PropTypes.bool.isRequired,
     created: PropTypes.string.isRequired,
     created_naturaltime: PropTypes.string.isRequired,
-    body: PropTypes.string.isRequired
   }).isRequired
 };
 
