@@ -7,6 +7,7 @@ import CommentList from '../components/CommentList';
 import Subject from '../components/Subject';
 import TrendingBoards from '../components/TrendingBoards';
 import Footer from '../components/Footer';
+import CommentForm from '../forms/CommentForm';
 
 class BoardPage extends Component {
   constructor(props) {
@@ -30,6 +31,8 @@ class BoardPage extends Component {
       });
   }
 
+  submit = data => console.log(data);
+
   render() {
     const { board_details, subject_details } = this.state;
     const comment_url = `http://127.0.0.1:8000/api/frontboard/comments/${this.props.match.params.subject_slug}/`;
@@ -43,6 +46,7 @@ class BoardPage extends Component {
               <PageHeading text={board_details.title} />
               <Subject slug={this.props.match.params.subject_slug} />
               <CommentList url={comment_url} />
+              <CommentForm submit={this.submit} />
             </div>
 
             <div class="col-lg-4 col-md-4">
