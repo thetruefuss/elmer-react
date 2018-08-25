@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 import { Link } from 'react-router-dom';
 import PageHeading from '../components/PageHeading';
 import BoardCover from '../components/BoardCover';
@@ -8,8 +10,9 @@ import Subject from '../components/Subject';
 import TrendingBoards from '../components/TrendingBoards';
 import Footer from '../components/Footer';
 import CommentForm from '../forms/CommentForm';
+import { createComments } from "../actions/comments";
 
-class BoardPage extends Component {
+class SubjectPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -19,7 +22,7 @@ class BoardPage extends Component {
   }
 
   componentDidMount() {
-    document.title = `${this.props.match.params.board_slug} | Elmer`
+    document.title = `${this.props.match.params.board_slug} | Elmer`;
     fetch(`http://127.0.0.1:8000/api/frontboard/boards/${this.props.match.params.board_slug}/`, {
       headers: {
         'Content-Type': 'application/json'
@@ -31,7 +34,7 @@ class BoardPage extends Component {
       });
   }
 
-  submit = data => console.log(data);
+  submit = data => this.props.createComments(data);
 
   render() {
     const { board_details, subject_details } = this.state;
@@ -62,4 +65,9 @@ class BoardPage extends Component {
     );
   }
 }
-export default BoardPage;
+
+SubjectPage.propTypes = {
+  createComments: PropTypes.func.isRequired
+};
+
+export default connect(null, { createComments })(SubjectPage);
