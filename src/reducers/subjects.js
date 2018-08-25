@@ -1,4 +1,4 @@
-import { FETCH_SUBJECTS } from '../types';
+import { FETCH_SUBJECTS } from "../types";
 
 const initialState = {
   subjects: [

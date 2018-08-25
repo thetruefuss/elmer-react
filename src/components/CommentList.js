@@ -55,9 +55,9 @@ CommentList.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  comments: state.commentReducer.comments,
-  ready: state.commentReducer.ready,
-  newComment: state.commentReducer.comment
+  comments: state.comments.comments,
+  ready: state.comments.ready,
+  newComment: state.comments.comment
 });
 
 export default connect(mapStateToProps, { fetchComments })(CommentList);

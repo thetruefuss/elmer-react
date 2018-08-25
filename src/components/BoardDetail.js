@@ -29,7 +29,7 @@ class BoardDetail extends Component {
           <div className="card-body" style={{padding: 10}}>
             <div style={{float: 'left', width: '80%'}}>
               <h5 style={{fontSize: 16}}>
-                <a href="/" className="card-link">{board.title}</a>
+                <Link to={`/b/${board.slug}`} className="card-link">{board.title}</Link>
               </h5>
               <p>{board.description}</p>
               <p className="text-muted">

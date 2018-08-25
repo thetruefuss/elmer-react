@@ -38,8 +38,8 @@ SubjectList.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  subjects: state.subjectReducer.subjects,
-  ready: state.subjectReducer.ready
+  subjects: state.subjects.subjects,
+  ready: state.subjects.ready
 });
 
 export default connect(mapStateToProps, { fetchSubjects })(SubjectList);

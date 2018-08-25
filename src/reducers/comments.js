@@ -1,4 +1,4 @@
-import { FETCH_COMMENTS, CREATE_COMMENTS } from '../types';
+import { FETCH_COMMENTS, CREATE_COMMENTS } from "../types";
 
 const initialState = {
   comments: [
@@ -18,10 +18,10 @@ export default function(state = initialState, action) {
         ready: true
       };
     case CREATE_COMMENTS:
-    return {
-      ...state,
-      comment: action.payload
-    }
+      return {
+        ...state,
+        comment: action.payload
+      };
     default:
       return state;
   }
