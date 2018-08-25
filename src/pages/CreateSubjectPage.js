@@ -35,8 +35,7 @@ class CreateSubjectPage extends Component {
           <div className="row">
             <div
               className="container"
-              style={{ margin: "0 auto", width: "50%" }}
-            >
+              style={{ margin: "0 auto", width: "50%" }}>
               <PageHeading text="Compose a new post" />
               <SubjectForm submit={this.submit} />
               <CenteredFooter />

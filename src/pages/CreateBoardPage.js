@@ -35,8 +35,7 @@ class CreateBoardPage extends Component {
           <div className="row">
             <div
               className="container"
-              style={{ margin: "0 auto", width: "50%" }}
-            >
+              style={{ margin: "0 auto", width: "50%" }}>
               <PageHeading text="Create new board" />
               <BoardForm submit={this.submit} />
               <CenteredFooter />

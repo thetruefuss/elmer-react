@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import PageHeading from '../components/PageHeading';
-import CenteredFooter from '../components/CenteredFooter';
-import LoginForm from '../forms/LoginForm';
+import PageHeading from "../components/PageHeading";
+import CenteredFooter from "../components/CenteredFooter";
+import LoginForm from "../forms/LoginForm";
 import { login } from "../actions/auth";
 
 class LoginPage extends Component {
   componentDidMount() {
-    document.title = "Login | Elmer"
+    document.title = "Login | Elmer";
   }
 
   submit = data =>
@@ -19,7 +19,9 @@ class LoginPage extends Component {
       <React.Fragment>
         <div className="container form_content_block">
           <div className="row">
-            <div className="container" style={{margin: '0 auto', width: '50%'}}>
+            <div
+              className="container"
+              style={{ margin: "0 auto", width: "50%" }}>
               <PageHeading text="Login to Elmer" />
               <LoginForm submit={this.submit} />
               <CenteredFooter />
@@ -38,4 +40,7 @@ LoginPage.propTypes = {
   login: PropTypes.func.isRequired
 };
 
-export default connect(null, { login })(LoginPage);
+export default connect(
+  null,
+  { login }
+)(LoginPage);

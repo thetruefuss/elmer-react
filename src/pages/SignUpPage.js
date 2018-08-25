@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import PageHeading from '../components/PageHeading';
-import CenteredFooter from '../components/CenteredFooter';
-import SignUpForm from '../forms/SignUpForm';
+import PageHeading from "../components/PageHeading";
+import CenteredFooter from "../components/CenteredFooter";
+import SignUpForm from "../forms/SignUpForm";
 import { signup } from "../actions/users";
 
 class SignUpPage extends Component {
   componentDidMount() {
-    document.title = "Sign Up | Elmer"
+    document.title = "Sign Up | Elmer";
   }
   submit = data =>
     this.props.signup(data).then(() => this.props.history.push("/"));
@@ -18,7 +18,9 @@ class SignUpPage extends Component {
       <React.Fragment>
         <div className="container form_content_block">
           <div className="row">
-            <div className="container" style={{margin: '0 auto', width: '50%'}}>
+            <div
+              className="container"
+              style={{ margin: "0 auto", width: "50%" }}>
               <PageHeading text="Register to Elmer" />
               <SignUpForm submit={this.submit} />
               <CenteredFooter />
@@ -37,4 +39,7 @@ SignUpPage.propTypes = {
   signup: PropTypes.func.isRequired
 };
 
-export default connect(null, { signup })(SignUpPage);
+export default connect(
+  null,
+  { signup }
+)(SignUpPage);
