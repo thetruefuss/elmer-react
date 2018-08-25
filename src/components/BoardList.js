@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 class BoardList extends Component {
@@ -6,36 +7,21 @@ class BoardList extends Component {
     super(props);
 
     this.state = {
-      logged_in: localStorage.getItem('token') ? true : false,
       boards: [],
       ready: false
     };
   }
 
   componentDidMount() {
-    const { url } = this.props;
-    if (this.state.logged_in) {
-      fetch(url, {
-        headers: {
-          Authorization: `JWT ${localStorage.getItem('token')}`,
-          'Content-Type': 'application/json'
-        },
-      })
-        .then(res => res.json())
-        .then(json => {
-          this.setState({ boards: json.results });
-        });
-    } else {
-      fetch(url, {
-        headers: {
-          'Content-Type': 'application/json'
-        },
-      })
-        .then(res => res.json())
-        .then(json => {
-          this.setState({ boards: json.results });
-        });
-    }
+    axios.get("http://127.0.0.1:8000/api/frontboard/boards/").then(res => {
+      this.setState({ boards: res.data.results });
+    });
+  }
+
+  subscribeOrUnsubscribe = slug => {
+    axios.get(`http://127.0.0.1:8000/api/frontboard/boards/subscribe/?board_slug=${slug}`).then(res => {
+      console.log(res.data);
+    });
   }
 
   render() {
@@ -57,15 +43,16 @@ class BoardList extends Component {
                       <p>{board.description}</p>
                       <p className="text-muted">
                         <span title="c">{board.subscribers_count} subscribers</span>, created
-                        <span>{board.created_naturaltime}</span> •
-                        <a href="#" className="text-muted" title="report this board">report</a>
+                        <span>{board.created_naturaltime}</span>
+                        {" "} • {" "}
+                        <Link to="/report" className="text-muted">report</Link>
                       </p>
                     </div>
                     <div className="text-center" style={{float: 'right', width: '20%'}}>
                       {board.is_subscribed ?
-                        <a href="{% url 'subscribe' board.slug %}" className="btn btn-secondary btn-sm" id="subscribe_board">Unsubscribe</a>
+                        <button className="btn btn-secondary btn-sm" onClick={() => this.subscribeOrUnsubscribe(board.slug)}>Unsubscribe</button>
                         :
-                        <a href="{% url 'subscribe' board.slug %}" className="btn btn-primary btn-sm" id="subscribe_board">Subscribe</a>
+                        <button className="btn btn-primary btn-sm" onClick={() => this.subscribeOrUnsubscribe(board.slug)}>Subscribe</button>
                       }
                     </div>
                   </div>

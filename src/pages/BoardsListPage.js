@@ -19,7 +19,7 @@ class BoardsListPage extends Component {
 
             <div className="col-lg-8 col-md-8">
               <PageHeading text="Subscribe Boards" />
-              <BoardList url="http://127.0.0.1:8000/api/frontboard/boards/" />
+              <BoardList />
             </div>
 
             <div class="col-lg-4 col-md-4">
