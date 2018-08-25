@@ -54,9 +54,9 @@ class TopNavigation extends Component {
                 <Link to="/activities" style={{marginRight: 15, position: 'relative'}} id="check_activities" title="Notifications"><i className="fa fa-bell-o fa-lg" aria-hidden="true" /><span id="activities_count" /></Link>
                 <Link to="/new_post" style={{marginRight: 15, position: 'relative'}} title="Post a new subject"><i className="fa fa-pencil fa-lg" aria-hidden="true" /></Link>
                 <div className="dropdown">
-                  <a href="#" role="button" id="user_dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Profile and settings">
+                  <span className="pointer" role="button" id="user_dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Profile and settings">
                     <img src={this.state.user_details.profile_picture} alt="Elmer Logo" style={{width: 36, height: 36, borderRadius: 50}} />
-                  </a>
+                  </span>
                   <div className="dropdown-menu" aria-labelledby="user_dropdown" style={{right: 0, left: 'auto'}}>
                     <Link className="dropdown-item font-weight-bold" to={`/u/${this.state.user_details.username}`}>{this.state.user_details.screen_name}</Link>
                     <div className="dropdown-divider" />
@@ -69,7 +69,7 @@ class TopNavigation extends Component {
                     <div className="dropdown-divider" />
                     <Link className="dropdown-item" to="/settings">Account settings</Link>
                     <Link className="dropdown-item font-weight-light" to="feedback">Send Feedback</Link>
-                    <a className="dropdown-item" href="#" onClick={() => this.props.logout()}>Sign out</a>
+                    <span className="dropdown-item pointer" onClick={() => this.props.logout()}>Sign out</span>
                   </div>
                 </div>
               </React.Fragment> :

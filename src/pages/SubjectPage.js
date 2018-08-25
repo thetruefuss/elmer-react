@@ -17,7 +17,6 @@ class SubjectPage extends Component {
     super(props);
     this.state = {
       board_details: {},
-      subject_details: {}
     };
   }
 
@@ -37,7 +36,7 @@ class SubjectPage extends Component {
   submit = data => this.props.createComments(data);
 
   render() {
-    const { board_details, subject_details } = this.state;
+    const { board_details } = this.state;
     const comment_url = `http://127.0.0.1:8000/api/frontboard/comments/${this.props.match.params.subject_slug}/`;
     return (
       <React.Fragment>

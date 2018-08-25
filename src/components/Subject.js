@@ -50,17 +50,14 @@ class Subject extends Component {
         <div className="card-body card-body-styling">
 
         <div className="star-partition">
-          <a href="#"
-             style={{textDecoration: 'none'}}
-             id="js-star-subject"
-             onClick={e => this.star_subject(e, this.state.subject.slug)}>
+          <span className="pointer" onClick={e => this.star_subject(e, this.state.subject.slug)}>
              {subject.is_starred === true ?
                <i className="fa fa-star fa-lg" aria-hidden="true" id="star_icon"></i> :
                <i className="fa fa-star-o fa-lg" aria-hidden="true" id="star_icon"></i>
              }
              <br />
-             <span id="js-star-count">{ subject.stars_count }</span>
-          </a>
+             <span>{ subject.stars_count }</span>
+          </span>
         </div>
 
           <div className="body-partition">

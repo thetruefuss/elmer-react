@@ -104,3 +104,6 @@ li.list-group-item:nth-child(odd) {
 li.list-group-item {
 	border: none;
 }
+.pointer:hover {
+	cursor: pointer;
+}

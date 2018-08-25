@@ -16,17 +16,27 @@ class CommentDetail extends Component {
     const { comment } = this.state;
     return (
           <li className="list-group-item">
-            <p>{comment.body}
-            <br /><a href="/" title="view profile" id="commenter" className="card-link">{comment.commenter.screen_name}</a> &#8212;
-            <span>{comment.created_naturaltime}</span>
-            {comment.is_commenter ?
-              <a href="/" title="delete this comment" id="delete_comment"><i className="fa fa-trash-o"></i></a>
-              :
-              <React.Fragment>
-                <a href="/" style={{ textDecoration: 'none' }} title="reply to this comment" id="reply_comment"><i className="fa fa-reply"></i> Reply</a> &bull; <a href="/" style={{textDecoration: 'none'}} title="report this comment" id="report_link"><i className="fa fa-flag-o"></i> Report</a>
-              </React.Fragment>
-            }
-          </p></li>
+            <p>
+              <Linkify>{comment.body}</Linkify>
+              <br />
+              <Link to={`/u/${comment.commenter.username}`} title="view profile" id="commenter" className="card-link">{comment.commenter.screen_name}</Link> &#8212;
+              {" "}
+              <span>{comment.created_naturaltime}</span>
+              {" "}
+              {comment.is_commenter ?
+                <a href="/" title="delete this comment" id="delete_comment"><i className="fa fa-trash-o"></i></a>
+                :
+                <React.Fragment>
+                  <a href="/" style={{ textDecoration: 'none' }} title="reply to this comment" id="reply_comment">
+                    <i className="fa fa-reply"></i> Reply
+                  </a> &bull;
+                  <a href="/" style={{textDecoration: 'none'}} title="report this comment" id="report_link">
+                    <i className="fa fa-flag-o"></i> Report
+                  </a>
+                </React.Fragment>
+              }
+            </p>
+          </li>
     );
   }
 }

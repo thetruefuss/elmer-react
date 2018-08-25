@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { Switch, Route, withRouter } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import './App.css';
 import TopNavigation from './components/TopNavigation';
 import HomePage from './pages/HomePage';
