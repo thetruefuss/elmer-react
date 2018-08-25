@@ -5,7 +5,8 @@ import { Link } from 'react-router-dom';
 class CommentForm extends Component {
   state = {
     data: {
-      body: ""
+      body: "",
+      subject: 1
     },
     errors: {}
   };
@@ -21,10 +22,10 @@ class CommentForm extends Component {
     this.setState({ errors });
     if (Object.keys(errors).length === 0) {
       this.props
-        .submit(this.state.data)
-        .catch(err =>
-          this.setState({ errors: err.response.data })
-        );
+        .submit(this.state.data);
+      this.setState({
+        data: { ...this.state.data, body: "" }
+      });
     }
   };
 
