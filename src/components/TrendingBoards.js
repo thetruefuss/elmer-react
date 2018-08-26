@@ -35,6 +35,7 @@ class TrendingBoards extends Component {
     return (
       <React.Fragment>
         <div className="card border-light">
+          <br />
           <div className="card-header text-center font-weight-bold trending-boards-header">
             Trending Boards
           </div>

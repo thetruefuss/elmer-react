@@ -36,8 +36,9 @@ class ActiveThreads extends Component {
 
     return (
       <React.Fragment>
-        {this.props.isAuthenticated ? (
+        {this.props.isAuthenticated && (
           <div className="card border-light">
+            <br />
             <div className="card-header text-center font-weight-bold active-threads-header">
               Active Threads
             </div>
@@ -67,8 +68,6 @@ class ActiveThreads extends Component {
               )}
             </ul>
           </div>
-        ) : (
-          ""
         )}
       </React.Fragment>
     );
