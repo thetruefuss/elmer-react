@@ -19,6 +19,10 @@ export default {
     signup: data =>
       axios
         .post("http://127.0.0.1:8000/api/users/signup/", data)
+        .then(res => res.data),
+    refreshToken: token =>
+      axios
+        .post("http://127.0.0.1:8000/api/auth/token/refresh/", token)
         .then(res => res.data)
   }
 };

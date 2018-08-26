@@ -23,3 +23,10 @@ export const logout = () => dispatch => {
   setAuthorizationHeader();
   dispatch(userLoggedOut());
 };
+
+export const refreshToken = token => dispatch =>
+  api.user.refreshToken(token).then(user => {
+    localStorage.token = user.token;
+    setAuthorizationHeader(user.token);
+    dispatch(userLoggedIn(user));
+  });
