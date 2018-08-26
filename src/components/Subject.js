@@ -25,12 +25,16 @@ class Subject extends Component {
   }
 
   star_subject = (e, slug) => {
-    axios.get(`http://127.0.0.1:8000/api/frontboard/subjects/star/?subject_slug=${slug}`).then(res => {
-      let subject = { ...this.state.subject };
-      subject.stars_count = res.data.total_points;
-      subject.is_starred = res.data.is_starred;
-      this.setState({ subject });
-    });
+    axios
+      .get(
+        `http://127.0.0.1:8000/api/frontboard/subjects/star/?subject_slug=${slug}`
+      )
+      .then(res => {
+        let subject = { ...this.state.subject };
+        subject.stars_count = res.data.total_points;
+        subject.is_starred = res.data.is_starred;
+        this.setState({ subject });
+      });
   };
 
   render() {
@@ -108,7 +112,7 @@ class Subject extends Component {
                     <a href="/" title="edit subject">
                       <i class="fa fa-edit fa-lg" /> Edit
                     </a>{" "}
-                    &bull;
+                    &bull;{" "}
                     <a href="/" title="delete subject" id="delete_subject">
                       <i class="fa fa-trash-o fa-lg" /> Delete
                     </a>
