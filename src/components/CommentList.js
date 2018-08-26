@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import ReactPlaceholder from "react-placeholder";
 import "react-placeholder/lib/reactPlaceholder.css";
-import SubjectPlaceholder from "./SubjectPlaceholder";
+import CommentPlaceholder from "./CommentPlaceholder";
 import CommentDetail from "./CommentDetail";
 import { fetchComments } from "../actions/comments";
 
@@ -34,7 +34,7 @@ class CommentList extends Component {
                     showLoadingAnimation
                     delay={2000}
                     ready={this.props.ready}
-                    customPlaceholder={SubjectPlaceholder}>
+                    customPlaceholder={CommentPlaceholder}>
                     <CommentDetail comment={comment} key={index} />
                   </ReactPlaceholder>
                 );
