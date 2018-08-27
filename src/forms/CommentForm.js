@@ -32,14 +32,16 @@ class CommentForm extends Component {
     });
 
   onSubmit = e => {
-    e.preventDefault();
-    const errors = this.validate(this.state.data);
-    this.setState({ errors });
-    if (Object.keys(errors).length === 0) {
-      this.props.submit(this.state.data);
-      this.setState({
-        data: { ...this.state.data, body: "" }
-      });
+    const keyCode = e.which?e.which:e.keyCode;
+    if (keyCode === 13) {
+      const errors = this.validate(this.state.data);
+      this.setState({ errors });
+      if (Object.keys(errors).length === 0) {
+        this.props.submit(this.state.data);
+        this.setState({
+          data: { ...this.state.data, body: "" }
+        });
+      }
     }
   };
 
@@ -54,7 +56,7 @@ class CommentForm extends Component {
 
     return (
       <React.Fragment>
-        <form onSubmit={this.onSubmit}>
+        <form>
           <textarea
             className="form-control"
             rows={3}
@@ -63,8 +65,8 @@ class CommentForm extends Component {
             placeholder="Leave a comment"
             value={data.body}
             onChange={this.onChange}
+            onKeyDown={this.onSubmit}
           />
-          <input type="submit" value="Comment" />
         </form>
         <br />
         {errors.body && <span>{errors.body}</span>}
