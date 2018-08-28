@@ -23,7 +23,7 @@ class TrendingBoards extends Component {
 
   componentDidMount() {
     axios
-      .get("http://127.0.0.1:8000/api/frontboard/boards/trending/")
+      .get("http://127.0.0.1:8000/api/frontboard/top_five_boards/")
       .then(res => {
         this.setState({ boards: res.data, ready: true });
       });

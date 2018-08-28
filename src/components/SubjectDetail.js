@@ -17,7 +17,7 @@ class SubjectDetail extends Component {
   star_subject = (e, slug) => {
     axios
       .get(
-        `http://127.0.0.1:8000/api/frontboard/subjects/star/?subject_slug=${slug}`
+        `http://127.0.0.1:8000/api/frontboard/actions/star/?subject_slug=${slug}`
       )
       .then(res => {
         let subject = { ...this.state.subject };

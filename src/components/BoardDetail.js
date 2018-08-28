@@ -12,7 +12,7 @@ class BoardDetail extends Component {
   }
 
   subscribeOrUnsubscribe = slug => {
-    axios.get(`http://127.0.0.1:8000/api/frontboard/boards/subscribe/?board_slug=${slug}`).then(res => {
+    axios.get(`http://127.0.0.1:8000/api/frontboard/actions/subscribe/?board_slug=${slug}`).then(res => {
       let board = {...this.state.board};
       board.is_subscribed = res.data.is_subscribed;
       board.subscribers_count = res.data.total_subscribers;
