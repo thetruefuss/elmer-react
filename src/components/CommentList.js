@@ -9,8 +9,8 @@ import { fetchComments } from "../actions/comments";
 
 class CommentList extends Component {
   componentDidMount() {
-    const { url } = this.props;
-    this.props.fetchComments(url);
+    const { subject_slug } = this.props;
+    this.props.fetchComments(subject_slug);
   }
 
   componentWillReceiveProps(nextProps) {

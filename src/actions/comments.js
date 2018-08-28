@@ -1,8 +1,8 @@
 import { FETCH_COMMENTS, CREATE_COMMENTS } from "../types";
 import api from "../api";
 
-export const fetchComments = url => dispatch => {
-  api.comments.getAll(url).then(comments =>
+export const fetchComments = subject_slug => dispatch => {
+  api.comments.getAll(subject_slug).then(comments =>
     dispatch({
       type: FETCH_COMMENTS,
       payload: comments

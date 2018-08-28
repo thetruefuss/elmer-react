@@ -36,7 +36,7 @@ class BoardPage extends Component {
     const { board_details } = this.state;
     return (
       <React.Fragment>
-        <BoardCover cover_url={board_details.cover} />
+        <BoardCover cover_url={board_details.cover_url} />
         <div className="container content_block">
           <div className="row">
             <div className="col-lg-8 col-md-8">

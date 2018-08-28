@@ -42,18 +42,15 @@ class SubjectPage extends Component {
 
   render() {
     const { board_details } = this.state;
-    const comment_url = `http://127.0.0.1:8000/api/frontboard/comments/${
-      this.props.match.params.subject_slug
-    }/`;
     return (
       <React.Fragment>
-        <BoardCover cover_url={board_details.cover} />
+        <BoardCover cover_url={board_details.cover_url} />
         <div className="container content_block">
           <div className="row">
             <div className="col-lg-8 col-md-8">
               <PageHeading text={board_details.title} />
               <Subject slug={this.props.match.params.subject_slug} />
-              <CommentList url={comment_url} />
+              <CommentList subject_slug={this.props.match.params.subject_slug} />
               <CommentForm
                 submit={this.submit}
                 slug={this.props.match.params.subject_slug}
