@@ -67,10 +67,10 @@ class Subject extends Component {
           <div className="body-partition">
             <p className="post-info text-muted">
               <Link
-                to={`/b/${subject.board}`}
+                to={`/b/${subject.board_slug}`}
                 title="visit board"
                 className="board-link">
-                b/{subject.board}
+                b/{subject.board_slug}
               </Link>{" "}
               &bull; Posted by{" "}
               <a href="/" title="view profile" className="profile-link">
