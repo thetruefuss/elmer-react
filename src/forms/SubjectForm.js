@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
 import Recaptcha from "react-recaptcha";
-import "./SubjectForm.css";
+import InlineError from "../messages/InlineError";
+import NonFieldError from "../messages/NonFieldError";
 
 class SubjectForm extends Component {
   state = {
@@ -13,6 +14,7 @@ class SubjectForm extends Component {
       board: null,
       board_options: []
     },
+    loading: false,
     errors: {}
   };
 
@@ -46,14 +48,15 @@ class SubjectForm extends Component {
     const errors = this.validate(this.state.data);
     this.setState({ errors });
     if (Object.keys(errors).length === 0) {
+      this.setState({ loading: true });
       this.props.submit(this.state.data);
     }
   };
 
   validate = data => {
     const errors = {};
-    if (!data.title) errors.title = "title required.";
-    if (!data.board) errors.board = "board required.";
+    if (!data.title) errors.title = "This field is required.";
+    if (!data.board) errors.board = "This field is required.";
     return errors;
   };
 
@@ -66,7 +69,7 @@ class SubjectForm extends Component {
   };
 
   render() {
-    const { data, errors } = this.state;
+    const { data, errors, loading } = this.state;
     const boardOptions = this.state.data.board_options.map(board => (
       <option key={board.id} value={board.id}>
         {board.title}
@@ -74,18 +77,21 @@ class SubjectForm extends Component {
     ));
     return (
       <React.Fragment>
+        {errors.non_field_errors && (
+          <NonFieldError text={errors.non_field_errors} />
+        )}
         <form
           onSubmit={this.onSubmit}
           encType="multipart/form-data"
           id="subject_form">
           <div className="form-group">
-            <label htmlFor="id_title">
+            <label htmlFor="title">
               <span id="required_inp">*</span>Title
             </label>
             <input
               type="text"
               className="form-control"
-              id="id_title"
+              id="title"
               maxLength={150}
               name="title"
               value={data.title}
@@ -94,15 +100,15 @@ class SubjectForm extends Component {
             <small className="form-text text-muted">
               You can <b>u/mention</b> other members in your post anywhere.
             </small>
+            {errors.title && <InlineError text={errors.title} />}
           </div>
-          {errors.title && <span>{errors.title}</span>}
           <div className="form-group">
-            <label htmlFor="id_description">Description</label>
+            <label htmlFor="body">Description</label>
             <textarea
               className="form-control"
               cols={40}
               rows={4}
-              id="id_description"
+              id="body"
               name="body"
               maxLength={2000}
               placeholder="Describe your subject verbosely"
@@ -111,11 +117,11 @@ class SubjectForm extends Component {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="id_photo">Add image</label>
+            <label htmlFor="photo">Add image</label>
             <input
               type="file"
               className="form-control-file"
-              id="id_photo"
+              id="photo"
               name="photo"
               accept="image/*"
               onChange={this.onChangePhoto}
@@ -136,8 +142,8 @@ class SubjectForm extends Component {
             <p className="text-muted">
               You need to <b>subscribe</b> a board, before posting in it.
             </p>
+            {errors.board && <InlineError text={errors.board} />}
           </div>
-          {errors.board && <span>{errors.board}</span>}
           <Recaptcha
             sitekey="6LcxazUUAAAAAJstEHfmrSDE5QFqSrPUHqozW9XQ"
             render="explicit"
@@ -148,7 +154,8 @@ class SubjectForm extends Component {
           <button
             type="submit"
             className="btn btn-primary btn-block"
-            id="submit_subject">
+            id="submit_subject"
+            disabled={loading}>
             Submit
           </button>
         </form>

@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Recaptcha from "react-recaptcha";
 import { Link } from "react-router-dom";
-import "./SignUpForm.css";
+import InlineError from "../messages/InlineError";
+import NonFieldError from "../messages/NonFieldError";
 
 class SignUpForm extends Component {
   state = {
@@ -11,6 +12,7 @@ class SignUpForm extends Component {
       email: "",
       password: ""
     },
+    loading: false,
     errors: {}
   };
 
@@ -24,16 +26,19 @@ class SignUpForm extends Component {
     const errors = this.validate(this.state.data);
     this.setState({ errors });
     if (Object.keys(errors).length === 0) {
+      this.setState({ loading: true });
       this.props
         .submit(this.state.data)
-        .catch(err => this.setState({ errors: err.response.data }));
+        .catch(err =>
+          this.setState({ errors: err.response.data, loading: false })
+        );
     }
   };
 
   validate = data => {
     const errors = {};
-    if (!data.username) errors.username = "username required.";
-    if (!data.password) errors.password = "password required.";
+    if (!data.username) errors.username = "This field is required.";
+    if (!data.password) errors.password = "This field is required.";
     return errors;
   };
 
@@ -46,47 +51,36 @@ class SignUpForm extends Component {
   };
 
   render() {
-    const { data, errors } = this.state;
+    const { data, errors, loading } = this.state;
 
     return (
       <React.Fragment>
         {errors.non_field_errors && (
-          <div
-            className="alert alert-danger alert-dismissible fade show"
-            role="alert">
-            This username is already taken.
-            <button
-              type="button"
-              className="close"
-              data-dismiss="alert"
-              aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
+          <NonFieldError text={errors.non_field_errors} />
         )}
         <form onSubmit={this.onSubmit} id="register_form">
           <div className="form-group">
-            <label htmlFor="id_username">
+            <label htmlFor="username">
               <span id="required_inp">*</span>Username
             </label>
             <input
               type="text"
               className="form-control"
-              id="id_username"
+              id="username"
               name="username"
               aria-describedby="username_help"
               maxLength={30}
               value={data.username}
               onChange={this.onChange}
             />
+            {errors.username && <InlineError text={errors.username} />}
           </div>
-          {errors.username && <span>{errors.username}</span>}
           <div className="form-group">
-            <label htmlFor="id_email">Email address</label>
+            <label htmlFor="email">Email address</label>
             <input
               type="email"
               className="form-control"
-              id="id_email"
+              id="email"
               name="email"
               aria-describedby="email_help"
               value={data.email}
@@ -94,21 +88,21 @@ class SignUpForm extends Component {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="id_password">
+            <label htmlFor="password">
               <span id="required_inp">*</span>Password
             </label>
             <input
               type="password"
               className="form-control"
-              id="id_password"
+              id="password"
               name="password"
               aria-describedby="password_help"
               maxLength={150}
               value={data.password}
               onChange={this.onChange}
             />
+            {errors.password && <InlineError text={errors.password} />}
           </div>
-          {errors.password && <span>{errors.password}</span>}
           <Recaptcha
             sitekey="6LcxazUUAAAAAJstEHfmrSDE5QFqSrPUHqozW9XQ"
             render="explicit"
@@ -116,7 +110,10 @@ class SignUpForm extends Component {
             onloadCallback={this.onload_callback}
           />
           <br />
-          <button type="submit" className="btn btn-success btn-block">
+          <button
+            type="submit"
+            className="btn btn-success btn-block"
+            disabled={loading}>
             Sign Up
           </button>
           <small className="form-text text-muted">
@@ -125,7 +122,7 @@ class SignUpForm extends Component {
             <Link to="/privacy">privacy policy</Link>.
           </small>
         </form>
-        <div className="card text-center" style={{ marginTop: 15 }}>
+        <div className="card text-center mt-4">
           <div className="card-body">
             Already have an account?{" "}
             <Link to="/login" className="card-link">

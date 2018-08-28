@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
+import InlineError from "../messages/InlineError";
 
 class CommentForm extends Component {
   state = {
@@ -47,7 +48,7 @@ class CommentForm extends Component {
 
   validate = data => {
     const errors = {};
-    if (!data.body) errors.body = "body required.";
+    if (!data.body) errors.body = "This field is required.";
     return errors;
   };
 
@@ -67,9 +68,9 @@ class CommentForm extends Component {
             onChange={this.onChange}
             onKeyDown={this.onSubmit}
           />
+        {errors.body && <InlineError text={errors.body} />}
         </form>
         <br />
-        {errors.body && <span>{errors.body}</span>}
       </React.Fragment>
     );
   }

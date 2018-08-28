@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import "./LoginForm.css";
+import InlineError from "../messages/InlineError";
+import NonFieldError from "../messages/NonFieldError";
 
 class LoginForm extends Component {
   state = {
@@ -9,6 +10,7 @@ class LoginForm extends Component {
       username: "",
       password: ""
     },
+    loading: false,
     errors: {}
   };
 
@@ -22,72 +24,66 @@ class LoginForm extends Component {
     const errors = this.validate(this.state.data);
     this.setState({ errors });
     if (Object.keys(errors).length === 0) {
+      this.setState({ loading: true });
       this.props
         .submit(this.state.data)
-        .catch(err => this.setState({ errors: err.response.data }));
+        .catch(err =>
+          this.setState({ errors: err.response.data, loading: false })
+        );
     }
   };
 
   validate = data => {
     const errors = {};
-    if (!data.username) errors.username = "username required.";
-    if (!data.password) errors.password = "password required.";
+    if (!data.username) errors.username = "This field is required.";
+    if (!data.password) errors.password = "This field is required.";
     return errors;
   };
 
   render() {
-    const { data, errors } = this.state;
+    const { data, errors, loading } = this.state;
 
     return (
       <React.Fragment>
         {errors.non_field_errors && (
-          <div
-            className="alert alert-danger alert-dismissible fade show"
-            role="alert">
-            Please enter a correct username and password. Note that both fields
-            are case-sensitive.
-            <button
-              type="button"
-              className="close"
-              data-dismiss="alert"
-              aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
+          <NonFieldError text={errors.non_field_errors} />
         )}
         <form onSubmit={this.onSubmit} id="login_form">
           <div className="form-group">
-            <label htmlFor="id_username">Username</label>
+            <label htmlFor="username">Username</label>
             <input
               type="text"
               className="form-control"
-              id="id_username"
+              id="username"
               name="username"
               value={data.username}
               onChange={this.onChange}
             />
+            {errors.username && <InlineError text={errors.username} />}
           </div>
-          {errors.username && <span>{errors.username}</span>}
           <div className="form-group">
-            <label htmlFor="id_password">Password</label>
+            <label htmlFor="password">Password</label>
             <input
               type="password"
               className="form-control"
-              id="id_password"
+              id="password"
               name="password"
               value={data.password}
               onChange={this.onChange}
             />
+            {errors.password && <InlineError text={errors.password} />}
           </div>
-          {errors.password && <span>{errors.password}</span>}
-          <button type="submit" className="btn btn-primary btn-block">
+          <button
+            type="submit"
+            className="btn btn-primary btn-block"
+            disabled={loading}>
             Login
           </button>
-          <div className="text-center" style={{ marginTop: 10 }}>
+          <div className="text-center mt-4">
             <a href="/">Forgot password?</a>
           </div>
         </form>
-        <div className="card text-center" style={{ marginTop: 15 }}>
+        <div className="card text-center mt-4">
           <div className="card-body">
             Dont have an account?{" "}
             <Link to="/signup" className="card-link">

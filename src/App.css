@@ -1,109 +1,125 @@
-@import url('https://fonts.googleapis.com/css?family=Noto+Sans');
+@import url("https://fonts.googleapis.com/css?family=Noto+Sans");
 
 body {
-	background-color: #f8f9fa;
-	font-family: 'Noto Sans', sans-serif;
+  background-color: #f8f9fa;
+  font-family: "Noto Sans", sans-serif;
 }
 .form-control {
-	box-shadow: inset 0 1px 2px #e6e1e2;
-	transition: border-color ease-in-out .15s
+  box-shadow: inset 0 1px 2px #e6e1e2;
+  transition: border-color ease-in-out 0.15s;
 }
 .form-control:focus {
-	box-shadow: 0 0 0 1px rgba(0, 123, 255, .25), inset 0 2px 3px #e6e1e2
+  box-shadow: 0 0 0 1px rgba(0, 123, 255, 0.25), inset 0 2px 3px #e6e1e2;
+}
+.form-group label {
+  font-weight: bold;
+}
+.form-group input,
+.form-group textarea,
+.form-group select {
+  background-color: #f8f9fa;
+}
+.form-group input:hover,
+.form-group textarea:hover,
+.form-group select:hover {
+  background-color: #fff;
 }
 p {
-	font-size: 14px;
-	margin-bottom: 0
+  font-size: 14px;
+  margin-bottom: 0;
+}
+span#required_inp {
+  color: red;
 }
 #nb_btn:hover,
 #ns_btn:hover {
-	color: #005999;
-	background-color: #e6f4ff;
-	border-color: #07c;
-	box-shadow: none
+  color: #005999;
+  background-color: #e6f4ff;
+  border-color: #07c;
+  box-shadow: none;
 }
 .dropdown-item {
-	color: #607d8b
+  color: #607d8b;
 }
 span#activities_count,
 span#messages_count {
-	position: absolute;
-	font-size: 11px;
-	top: -5px;
-	right: -5px;
-	font-weight: 700;
-	background-color: #1f89de;
-	padding: 0 4px;
-	border-radius: 50%;
-	color: #fff
+  position: absolute;
+  font-size: 11px;
+  top: -5px;
+  right: -5px;
+  font-weight: 700;
+  background-color: #1f89de;
+  padding: 0 4px;
+  border-radius: 50%;
+  color: #fff;
 }
 .carousel-item .w-100 {
-	height: 289px
+  height: 289px;
 }
 .carousel-caption h5 {
-	color: #fff;
-	background-color: rgba(0, 0, 0, .5)
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 .fa-star,
 .fa-star-o {
-	color: #ffc107
+  color: #ffc107;
 }
 a {
-	color: #607D8B
+  color: #607d8b;
 }
 .card .card-body .text-right a {
-	text-decoration: underline
+  text-decoration: underline;
 }
 @media only screen and (max-width: 500px) {
-	div.col-lg-4,
-	div.col-md-4 {
-		display: none
-	}
+  div.col-lg-4,
+  div.col-md-4 {
+    display: none;
+  }
 }
 .content_block,
 .form_content_block {
-	background-color: #fff;
-	box-shadow: 0 0 2px 1px #e6e1e2;
-	padding-bottom: 50px
+  background-color: #fff;
+  box-shadow: 0 0 2px 1px #e6e1e2;
+  padding-bottom: 50px;
 }
 .form_content_block {
-	margin: 15px auto 0
+  margin: 15px auto 0;
 }
 .content_block {
-	margin-top: 15px
+  margin-top: 15px;
 }
 #welcome_signup_block {
-	padding: 50px;
-	background-image: url(/static/img/form_bg.jpg);
-	background-repeat: no-repeat;
-	background-size: cover
+  padding: 50px;
+  background-image: url(/static/img/form_bg.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 #welcome_signup_block .input-group {
-	margin-bottom: 5px
+  margin-bottom: 5px;
 }
 #welcome_signup_block .input-group-addon {
-	width: 150px;
-	padding: 10px
+  width: 150px;
+  padding: 10px;
 }
 span#required_inp {
-	color: red
+  color: red;
 }
 #subject_form #id_email,
 #subject_form #id_password,
 #welcome_signup_form #id_username {
-	background-color: #f8f9fa
+  background-color: #f8f9fa;
 }
 #subject_form #id_email:focus,
 #subject_form #id_password:focus,
 #welcome_signup_form #id_username:focus {
-	background-color: #fff
+  background-color: #fff;
 }
 li.list-group-item:nth-child(odd) {
-	background-color: #fbfbfb;
+  background-color: #fbfbfb;
 }
 li.list-group-item {
-	border: none;
+  border: none;
 }
 .pointer:hover {
-	cursor: pointer;
+  cursor: pointer;
 }

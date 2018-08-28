@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Recaptcha from "react-recaptcha";
-import "./BoardForm.css";
+import InlineError from "../messages/InlineError";
+import NonFieldError from "../messages/NonFieldError";
 
 class BoardForm extends Component {
   state = {
@@ -10,6 +11,7 @@ class BoardForm extends Component {
       description: "",
       cover: null
     },
+    loading: false,
     errors: {}
   };
 
@@ -28,14 +30,15 @@ class BoardForm extends Component {
     const errors = this.validate(this.state.data);
     this.setState({ errors });
     if (Object.keys(errors).length === 0) {
+      this.setState({ loading: true });
       this.props.submit(this.state.data);
     }
   };
 
   validate = data => {
     const errors = {};
-    if (!data.title) errors.title = "title required.";
-    if (!data.description) errors.description = "description required.";
+    if (!data.title) errors.title = "This field is required.";
+    if (!data.description) errors.description = "This field is required.";
     return errors;
   };
 
@@ -48,52 +51,55 @@ class BoardForm extends Component {
   };
 
   render() {
-    const { data, errors } = this.state;
+    const { data, errors, loading } = this.state;
 
     return (
       <React.Fragment>
+        {errors.non_field_errors && (
+          <NonFieldError text={errors.non_field_errors} />
+        )}
         <form
           onSubmit={this.onSubmit}
           encType="multipart/form-data"
           id="board_form">
           <div className="form-group">
-            <label htmlFor="id_title">
+            <label htmlFor="title">
               <span id="required_inp">*</span>Title
             </label>
             <input
               type="text"
               className="form-control"
-              id="id_title"
+              id="title"
               maxLength={500}
               name="title"
               value={data.title}
               onChange={this.onChange}
             />
+            {errors.title && <InlineError text={errors.title} />}
           </div>
-          {errors.title && <span>{errors.title}</span>}
           <div className="form-group">
-            <label htmlFor="id_description">
+            <label htmlFor="description">
               <span id="required_inp">*</span>Description
             </label>
             <textarea
               className="form-control"
               cols={40}
               rows={4}
-              id="id_description"
+              id="description"
               name="description"
               maxLength={2000}
               placeholder="Describe your board verbosely"
               value={data.description}
               onChange={this.onChange}
             />
+            {errors.description && <InlineError text={errors.description} />}
           </div>
-          {errors.description && <span>{errors.description}</span>}
           <div className="form-group">
-            <label htmlFor="id_cover">Background cover</label>
+            <label htmlFor="cover">Background cover</label>
             <input
               type="file"
               className="form-control-file"
-              id="id_cover"
+              id="cover"
               name="cover"
               accept="image/*"
               onChange={this.onChangeCover}
@@ -112,7 +118,8 @@ class BoardForm extends Component {
           <button
             type="submit"
             className="btn btn-success btn-block"
-            id="submit_board">
+            id="submit_board"
+            disabled={loading}>
             Submit
           </button>
         </form>
