@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import axios from 'axios';
 import { Link } from "react-router-dom";
 import Linkify from "react-linkify";
-import "./SubjectDetail.css";
 
 class SubjectDetail extends Component {
   constructor(props) {

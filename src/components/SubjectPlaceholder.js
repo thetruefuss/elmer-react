@@ -1,5 +1,4 @@
 import React from "react";
-import "./SubjectPlaceholder.css";
 import {
   TextBlock,
   TextRow,
