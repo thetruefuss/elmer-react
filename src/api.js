@@ -5,7 +5,12 @@ export default {
     getAll: url => axios.get(url).then(res => res.data.results)
   },
   comments: {
-    getAll: slug => axios.get(`http://127.0.0.1:8000/api/frontboard/comments/?subject_slug=${slug}`).then(res => res.data),
+    getAll: slug =>
+      axios
+        .get(
+          `http://127.0.0.1:8000/api/frontboard/comments/?subject_slug=${slug}`
+        )
+        .then(res => res.data),
     create: data =>
       axios
         .post("http://127.0.0.1:8000/api/frontboard/comments/", data)
