@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Recaptcha from "react-recaptcha";
 import { Link } from "react-router-dom";
+import Validator from "validator";
 import InlineError from "../messages/InlineError";
 import NonFieldError from "../messages/NonFieldError";
 
@@ -38,6 +39,9 @@ class SignUpForm extends Component {
   validate = data => {
     const errors = {};
     if (!data.username) errors.username = "This field is required.";
+    if (data.email) {
+      if (!Validator.isEmail(data.email)) errors.email = "Invalid email";
+    }
     if (!data.password) errors.password = "This field is required.";
     return errors;
   };
@@ -86,6 +90,7 @@ class SignUpForm extends Component {
               value={data.email}
               onChange={this.onChange}
             />
+          {errors.email && <InlineError text={errors.email} />}
           </div>
           <div className="form-group">
             <label htmlFor="password">
