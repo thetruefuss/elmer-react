@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import Linkify from "react-linkify";
-import "./CommentDetail.css";
 
 class CommentDetail extends Component {
   constructor(props) {

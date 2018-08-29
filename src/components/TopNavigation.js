@@ -5,7 +5,6 @@ import { connect } from "react-redux";
 import axios from "axios";
 import * as actions from "../actions/auth";
 import SearchInput from "./SearchInput";
-import "./TopNavigation.css";
 import elmer_logo from "../images/elmer_logo.png";
 
 class TopNavigation extends Component {
