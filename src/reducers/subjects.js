@@ -1,4 +1,4 @@
-import { FETCH_SUBJECTS } from "../types";
+import { FETCH_SUBJECTS, SUBJECT_STARRED } from "../types";
 
 const initialState = {
   subjects: [
@@ -15,6 +15,15 @@ export default function(state = initialState, action) {
         ...state,
         subjects: action.payload,
         ready: true
+      };
+    case SUBJECT_STARRED:
+      const new_subjects = [ ...state.subjects ];
+      new_subjects[action.id].is_starred = action.payload.is_starred;
+      new_subjects[action.id].stars_count = action.payload.total_points;
+      // state changing but UI not updating
+      return {
+        ...state,
+        subjects: new_subjects
       };
     default:
       return state;

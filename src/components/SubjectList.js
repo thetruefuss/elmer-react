@@ -26,7 +26,11 @@ class SubjectList extends Component {
                 delay={2000}
                 ready={this.props.ready}
                 customPlaceholder={SubjectPlaceholder}>
-                <SubjectDetail subject={subject} key={index} />
+                <SubjectDetail
+                  subject={subject}
+                  key={index}
+                  subject_index={index}
+                />
               </ReactPlaceholder>
             );
           })

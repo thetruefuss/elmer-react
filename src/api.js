@@ -2,7 +2,13 @@ import axios from "axios";
 
 export default {
   subjects: {
-    getAll: url => axios.get(url).then(res => res.data.results)
+    getAll: url => axios.get(url).then(res => res.data.results),
+    starSubject: slug =>
+      axios
+        .get(
+          `http://127.0.0.1:8000/api/frontboard/actions/star/?subject_slug=${slug}`
+        )
+        .then(res => res.data)
   },
   comments: {
     getAll: slug =>

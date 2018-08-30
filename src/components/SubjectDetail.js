@@ -1,40 +1,22 @@
 import React, { Component } from "react";
-import axios from 'axios';
+import { connect } from "react-redux";
+import axios from "axios";
 import { Link } from "react-router-dom";
 import Linkify from "react-linkify";
+import { starSubject } from "../actions/subjects";
 
 class SubjectDetail extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      subject: this.props.subject
-    };
-    this.star_subject = this.star_subject.bind(this);
-  }
-
-  star_subject = (e, slug) => {
-    axios
-      .get(
-        `http://127.0.0.1:8000/api/frontboard/actions/star/?subject_slug=${slug}`
-      )
-      .then(res => {
-        let subject = { ...this.state.subject };
-        subject.stars_count = res.data.total_points;
-        subject.is_starred = res.data.is_starred;
-        this.setState({ subject });
-      });
-  };
-
   render() {
-    const { subject } = this.state;
+    const { subject } = this.props;
     return (
       <div className="card card-styling">
         <div className="card-body card-body-styling">
           <div className="star-partition">
             <span
               className="pointer"
-              onClick={e => this.star_subject(e, this.state.subject.slug)}>
+              onClick={() =>
+                this.props.starSubject(this.props.subject_index, subject.slug)
+              }>
               {subject.is_starred === true ? (
                 <i
                   className="fa fa-star fa-lg"
@@ -103,4 +85,7 @@ class SubjectDetail extends Component {
   }
 }
 
-export default SubjectDetail;
+export default connect(
+  null,
+  { starSubject }
+)(SubjectDetail);
