@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const BoardCover = props => (
+const BoardCover = ({ cover_url }) => (
   <div
     style={{
       maxHeight: 250,
@@ -15,10 +15,10 @@ const BoardCover = props => (
         data-bgposition="left top"
         data-bgrepeat="no-repeat"
         data-lazydone="undefined"
-        data-src={props.cover_url}
+        data-src={cover_url}
         style={{
           backgroundRepeat: "no-repeat",
-          backgroundImage: `url(${props.cover_url})`,
+          backgroundImage: `url(${cover_url})`,
           backgroundSize: "cover",
           backgroundPosition: "left",
           width: "100%",
