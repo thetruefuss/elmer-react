@@ -40,7 +40,7 @@ class BoardPage extends Component {
               <SubjectList url={board_url} />
             </div>
 
-            <div class="col-lg-4 col-md-4">
+            <div className="col-lg-4 col-md-4">
               <Link
                 to="/new_post"
                 className="btn btn-primary btn-block mt-4"
