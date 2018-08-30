@@ -16,9 +16,7 @@ class CommentForm extends Component {
     /**
      * Change URL to get the <ID> only by passing <Slug>.
      */
-    const url = `http://127.0.0.1:8000/api/frontboard/subjects/${
-      this.props.slug
-    }`;
+    const url = `/api/frontboard/subjects/${this.props.slug}`;
     axios.get(url).then(res => {
       this.setState({
         data: { ...this.state.data, subject: res.data.id }
@@ -33,7 +31,7 @@ class CommentForm extends Component {
     });
 
   onSubmit = e => {
-    const keyCode = e.which?e.which:e.keyCode;
+    const keyCode = e.which ? e.which : e.keyCode;
     if (keyCode === 13) {
       const errors = this.validate(this.state.data);
       this.setState({ errors });
@@ -68,7 +66,7 @@ class CommentForm extends Component {
             onChange={this.onChange}
             onKeyDown={this.onSubmit}
           />
-        {errors.body && <InlineError text={errors.body} />}
+          {errors.body && <InlineError text={errors.body} />}
         </form>
         <br />
       </React.Fragment>

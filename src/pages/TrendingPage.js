@@ -17,7 +17,7 @@ class TrendingPage extends Component {
           <div className="row">
             <div className="col-lg-8 col-md-8">
               <PageHeading text="Top Subjects" />
-              <SubjectList url="http://127.0.0.1:8000/api/frontboard/subjects/?trending=True" />
+              <SubjectList url="/api/frontboard/subjects/?trending=True" />
             </div>
 
             <div class="col-lg-4 col-md-4">

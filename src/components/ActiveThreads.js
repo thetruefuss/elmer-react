@@ -23,11 +23,9 @@ class ActiveThreads extends Component {
   }
 
   componentDidMount() {
-    axios
-      .get("http://127.0.0.1:8000/api/frontboard/user_active_threads/")
-      .then(res => {
-        this.setState({ threads: res.data, ready: true });
-      });
+    axios.get("/api/frontboard/user_active_threads/").then(res => {
+      this.setState({ threads: res.data, ready: true });
+    });
   }
 
   render() {

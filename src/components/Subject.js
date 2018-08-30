@@ -15,9 +15,7 @@ class Subject extends Component {
   }
 
   componentDidMount() {
-    const url = `http://127.0.0.1:8000/api/frontboard/subjects/${
-      this.props.slug
-    }`;
+    const url = `/api/frontboard/subjects/${this.props.slug}`;
     axios.get(url).then(res => {
       this.setState({ subject: res.data, author: res.data.author });
     });
@@ -25,9 +23,7 @@ class Subject extends Component {
 
   star_subject = (e, slug) => {
     axios
-      .get(
-        `http://127.0.0.1:8000/api/frontboard/actions/star/?subject_slug=${slug}`
-      )
+      .get(`/api/frontboard/actions/star/?subject_slug=${slug}`)
       .then(res => {
         let subject = { ...this.state.subject };
         subject.stars_count = res.data.total_points;

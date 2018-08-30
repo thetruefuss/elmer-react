@@ -19,13 +19,11 @@ class SubjectForm extends Component {
   };
 
   componentDidMount() {
-    axios
-      .get("http://127.0.0.1:8000/api/frontboard/user_subscribed_boards/")
-      .then(res =>
-        this.setState({
-          data: { ...this.state.data, board_options: res.data }
-        })
-      );
+    axios.get("/api/frontboard/user_subscribed_boards/").then(res =>
+      this.setState({
+        data: { ...this.state.data, board_options: res.data }
+      })
+    );
   }
 
   onChange = e =>

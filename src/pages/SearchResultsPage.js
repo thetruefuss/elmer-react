@@ -12,7 +12,7 @@ class SearchResultsPage extends Component {
   }
 
   render() {
-    const search_url = `http://127.0.0.1:8000/api/frontboard/subjects/?search=${
+    const search_url = `/api/frontboard/subjects/?search=${
       this.props.location.state.query
     }`;
     return (

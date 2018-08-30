@@ -18,7 +18,7 @@ class TopNavigation extends Component {
   componentDidMount() {
     if (this.props.isAuthenticated) {
       axios
-        .get("http://127.0.0.1:8000/api/users/current_user/")
+        .get("/api/users/current_user/")
         .then(res => this.setState({ user_details: res.data }));
     }
   }

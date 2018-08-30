@@ -22,7 +22,7 @@ class CreateBoardPage extends Component {
       console.log(pair[0] + ", " + pair[1]);
     }
     axios
-      .post("http://127.0.0.1:8000/api/frontboard/boards/", formData)
+      .post("/api/frontboard/boards/", formData)
       .then(res => this.goToBoard(res.data.slug));
   };
 

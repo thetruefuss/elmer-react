@@ -18,7 +18,7 @@ class HomePage extends Component {
           <div className="row">
             <div className="col-lg-8 col-md-8">
               <PageHeading text="Homepage" />
-              <SubjectList url="http://127.0.0.1:8000/api/frontboard/subjects/" />
+              <SubjectList url="/api/frontboard/subjects/" />
             </div>
 
             <div class="col-lg-4 col-md-4">

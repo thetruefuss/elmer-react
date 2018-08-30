@@ -22,16 +22,11 @@ class SubjectPage extends Component {
 
   componentDidMount() {
     document.title = `${this.props.match.params.board_slug} | Elmer`;
-    fetch(
-      `http://127.0.0.1:8000/api/frontboard/boards/${
-        this.props.match.params.board_slug
-      }/`,
-      {
-        headers: {
-          "Content-Type": "application/json"
-        }
+    fetch(`/api/frontboard/boards/${this.props.match.params.board_slug}/`, {
+      headers: {
+        "Content-Type": "application/json"
       }
-    )
+    })
       .then(res => res.json())
       .then(json => {
         this.setState({ board_details: json });
@@ -50,7 +45,9 @@ class SubjectPage extends Component {
             <div className="col-lg-8 col-md-8">
               <PageHeading text={board_details.title} />
               <Subject slug={this.props.match.params.subject_slug} />
-              <CommentList subject_slug={this.props.match.params.subject_slug} />
+              <CommentList
+                subject_slug={this.props.match.params.subject_slug}
+              />
               <CommentForm
                 submit={this.submit}
                 slug={this.props.match.params.subject_slug}

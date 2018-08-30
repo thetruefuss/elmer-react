@@ -19,18 +19,14 @@ class BoardPage extends Component {
   componentDidMount() {
     document.title = `${this.props.match.params.board_slug} | Elmer`;
     axios
-      .get(
-        `http://127.0.0.1:8000/api/frontboard/boards/${
-          this.props.match.params.board_slug
-        }/`
-      )
+      .get(`/api/frontboard/boards/${this.props.match.params.board_slug}/`)
       .then(res => {
         this.setState({ board_details: res.data });
       });
   }
 
   render() {
-    const board_url = `http://127.0.0.1:8000/api/frontboard/subjects/?board=${
+    const board_url = `/api/frontboard/subjects/?board=${
       this.props.match.params.board_slug
     }`;
     const { board_details } = this.state;

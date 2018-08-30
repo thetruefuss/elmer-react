@@ -7,11 +7,10 @@ import "popper.js/dist/popper.min.js";
 import "bootstrap/dist/js/bootstrap.min.js";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Provider } from "react-redux";
-import decode from "jwt-decode";
 import store from "./store";
 import App from "./App";
 import registerServiceWorker from "./registerServiceWorker";
-import { userLoggedIn, refreshToken } from "./actions/auth";
+import { userLoggedIn } from "./actions/auth";
 import setAuthorizationHeader from "./utils/setAuthorizationHeader";
 
 /**
