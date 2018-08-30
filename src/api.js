@@ -2,18 +2,18 @@ import axios from "axios";
 
 export default {
   subjects: {
-    getAll: url => axios.get(url).then(res => res.data.results),
+    fetchSubjects: url => axios.get(url).then(res => res.data.results),
     starSubject: slug =>
       axios
         .get(`/api/frontboard/actions/star/?subject_slug=${slug}`)
         .then(res => res.data)
   },
   comments: {
-    getAll: slug =>
+    fetchComments: slug =>
       axios
         .get(`/api/frontboard/comments/?subject_slug=${slug}`)
         .then(res => res.data),
-    create: data =>
+    newComment: data =>
       axios.post("/api/frontboard/comments/", data).then(res => res.data)
   },
   user: {

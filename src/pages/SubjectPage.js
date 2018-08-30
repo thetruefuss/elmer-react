@@ -10,7 +10,7 @@ import Subject from "../components/Subject";
 import TrendingBoards from "../components/TrendingBoards";
 import Footer from "../components/Footer";
 import CommentForm from "../forms/CommentForm";
-import { createComments } from "../actions/comments";
+import { newComment } from "../actions/comments";
 
 class SubjectPage extends Component {
   constructor(props) {
@@ -33,7 +33,7 @@ class SubjectPage extends Component {
       });
   }
 
-  submit = data => this.props.createComments(data);
+  submit = data => this.props.newComment(data);
 
   render() {
     const { board_details } = this.state;
@@ -75,10 +75,10 @@ class SubjectPage extends Component {
 }
 
 SubjectPage.propTypes = {
-  createComments: PropTypes.func.isRequired
+  newComment: PropTypes.func.isRequired
 };
 
 export default connect(
   null,
-  { createComments }
+  { newComment }
 )(SubjectPage);

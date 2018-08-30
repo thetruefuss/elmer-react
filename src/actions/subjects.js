@@ -2,7 +2,7 @@ import { FETCH_SUBJECTS, SUBJECT_STARRED } from "../types";
 import api from "../api";
 
 export const fetchSubjects = url => dispatch => {
-  api.subjects.getAll(url).then(subjects =>
+  api.subjects.fetchSubjects(url).then(subjects =>
     dispatch({
       type: FETCH_SUBJECTS,
       payload: subjects

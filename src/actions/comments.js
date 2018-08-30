@@ -1,8 +1,8 @@
-import { FETCH_COMMENTS, CREATE_COMMENTS } from "../types";
+import { FETCH_COMMENTS, NEW_COMMENT } from "../types";
 import api from "../api";
 
 export const fetchComments = subject_slug => dispatch => {
-  api.comments.getAll(subject_slug).then(comments =>
+  api.comments.fetchComments(subject_slug).then(comments =>
     dispatch({
       type: FETCH_COMMENTS,
       payload: comments
@@ -10,10 +10,10 @@ export const fetchComments = subject_slug => dispatch => {
   );
 };
 
-export const createComments = data => dispatch => {
-  api.comments.create(data).then(comments =>
+export const newComment = data => dispatch => {
+  api.comments.newComment(data).then(comments =>
     dispatch({
-      type: CREATE_COMMENTS,
+      type: NEW_COMMENT,
       payload: comments
     })
   );
