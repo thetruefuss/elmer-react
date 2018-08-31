@@ -32,6 +32,12 @@ class Subject extends Component {
       });
   };
 
+  deleteSubject = (e, slug) => {
+    axios.delete(`/api/frontboard/subjects/${slug}`).then(res => {
+      console.log(res);
+    });
+  };
+
   render() {
     const { subject } = this.state;
     return (
@@ -108,9 +114,11 @@ class Subject extends Component {
                       <i class="fa fa-edit fa-lg" /> Edit
                     </a>{" "}
                     &bull;{" "}
-                    <a href="/" title="delete subject" id="delete_subject">
+                    <span
+                      className="pointer"
+                      onClick={e => this.deleteSubject(e, subject.slug)}>
                       <i class="fa fa-trash-o fa-lg" /> Delete
-                    </a>
+                    </span>
                   </React.Fragment>
                 ) : (
                   <a href="/" title="report this subject" id="report_link">
