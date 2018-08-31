@@ -1,7 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
+import axios from "axios";
 import { Link } from "react-router-dom";
 import Linkify from "react-linkify";
+
+const deleteComment = (e, id) => {
+  axios.delete(`/api/frontboard/comments/${id}`).then(res => {
+    console.log(res);
+    // Dispatch an action to remove this comment from comments list in redux.
+    alert("Comment deleted successfully.");
+  });
+};
 
 const CommentDetail = ({ comment }) => (
   <li className="list-group-item">
@@ -17,9 +26,9 @@ const CommentDetail = ({ comment }) => (
       </Link>{" "}
       &#8212; <span>{comment.created_naturaltime}</span>{" "}
       {comment.is_commenter ? (
-        <a href="/" title="delete this comment" id="delete_comment">
+        <span className="pointer" onClick={e => deleteComment(e, comment.id)}>
           <i className="fa fa-trash-o" />
-        </a>
+        </span>
       ) : (
         <React.Fragment>
           <a
