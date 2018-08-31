@@ -34,6 +34,7 @@ class SubjectPage extends Component {
   }
 
   submit = data => this.props.newComment(data);
+  goToHomePage = () => this.props.history.push("/");
 
   render() {
     const { board_details } = this.state;
@@ -47,6 +48,7 @@ class SubjectPage extends Component {
               <Subject
                 slug={this.props.match.params.subject_slug}
                 board_id={this.state.board_details.id}
+                goToHomePage={this.goToHomePage}
               />
               <CommentList
                 subject_slug={this.props.match.params.subject_slug}

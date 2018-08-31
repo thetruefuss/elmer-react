@@ -35,6 +35,7 @@ class Subject extends Component {
   deleteSubject = (e, slug) => {
     axios.delete(`/api/frontboard/subjects/${slug}`).then(res => {
       console.log(res);
+      this.props.goToHomePage();
     });
   };
 
