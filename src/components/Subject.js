@@ -38,6 +38,17 @@ class Subject extends Component {
     });
   };
 
+  reportSubject = (e, id) => {
+    axios
+      .post("/api/frontboard/reports/", {
+        subject: id,
+        board: this.props.board_id
+      })
+      .then(res => {
+        console.log(res);
+      });
+  };
+
   render() {
     const { subject } = this.state;
     return (
@@ -121,9 +132,11 @@ class Subject extends Component {
                     </span>
                   </React.Fragment>
                 ) : (
-                  <a href="/" title="report this subject" id="report_link">
+                  <span
+                    className="pointer"
+                    onClick={e => this.reportSubject(e, subject.id)}>
                     <i class="fa fa-flag-o fa-lg" /> Report
-                  </a>
+                  </span>
                 )}
               </div>
             </div>

@@ -44,7 +44,10 @@ class SubjectPage extends Component {
           <div className="row">
             <div className="col-lg-8 col-md-8">
               <PageHeading text={board_details.title} />
-              <Subject slug={this.props.match.params.subject_slug} />
+              <Subject
+                slug={this.props.match.params.subject_slug}
+                board_id={this.state.board_details.id}
+              />
               <CommentList
                 subject_slug={this.props.match.params.subject_slug}
               />
