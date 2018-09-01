@@ -7,6 +7,7 @@ import TopNavigation from "./components/TopNavigation";
 import HomePage from "./pages/HomePage";
 import TrendingPage from "./pages/TrendingPage";
 import BoardsListPage from "./pages/BoardsListPage";
+import NotificationsPage from "./pages/NotificationsPage";
 import BoardPage from "./pages/BoardPage";
 import SubjectPage from "./pages/SubjectPage";
 import SearchResultsPage from "./pages/SearchResultsPage";
@@ -36,6 +37,12 @@ const App = ({ location, isAuthenticated }) => (
         exact
         path="/boards"
         component={BoardsListPage}
+      />
+      <UserRoute
+        location={location}
+        exact
+        path="/activities"
+        component={NotificationsPage}
       />
       <Route
         location={location}
