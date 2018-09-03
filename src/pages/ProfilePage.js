@@ -34,6 +34,7 @@ class HomePage extends Component {
             <div className="col-lg-8 col-md-8">
               <PageHeading text="Profile" />
               <Profile profile_info={this.state.profile_info} />
+              <div style={{clear:'both'}}></div>
               <PageHeading text="Recent Posts" />
               <SubjectList
                 url={`/api/frontboard/subjects/?user=${

@@ -5,8 +5,8 @@ const Profile = ({ profile_info }) => (
   <div>
     <div
       className="card"
-      style={{ width: 25 + "%", float: "right", border: "none" }}>
-      <img className="card-img-top" src={profile_info.profile_picture_url} />
+      style={{ width: 25 + "%", float: "left", border: "none" }}>
+      <img className="card-img-top" src={profile_info.profile_picture_url} alt="Profile" />
     </div>
 
     <div
