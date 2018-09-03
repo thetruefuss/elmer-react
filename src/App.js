@@ -18,6 +18,7 @@ import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
 import TermsOfUsePage from "./pages/TermsOfUsePage";
 import LoginPage from "./pages/LoginPage";
 import SignUpPage from "./pages/SignUpPage";
+import ProfilePage from "./pages/ProfilePage";
 import UserRoute from "./routes/UserRoute";
 import GuestRoute from "./routes/GuestRoute";
 
@@ -55,6 +56,12 @@ const App = ({ location, isAuthenticated }) => (
         exact
         path="/s/:board_slug/:subject_slug"
         component={SubjectPage}
+      />
+      <Route
+        location={location}
+        exact
+        path="/u/:username"
+        component={ProfilePage}
       />
       <Route location={location} exact path="/about" component={AboutPage} />
       <Route
