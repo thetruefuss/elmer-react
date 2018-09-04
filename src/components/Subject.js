@@ -86,9 +86,9 @@ class Subject extends Component {
                 b/{subject.board_slug}
               </Link>{" "}
               &bull; Posted by{" "}
-              <a href="/" title="view profile" className="profile-link">
+              <Link to={`/u/${this.state.author.username}`} title="view profile" className="profile-link">
                 {this.state.author.screen_name}
-              </a>
+              </Link>
               <span> {subject.created_naturaltime}</span>
             </p>
             <h5>

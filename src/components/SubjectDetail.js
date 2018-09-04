@@ -35,9 +35,9 @@ const SubjectDetail = ({ subject, subject_index, starSubject }) => (
             b/{subject.board_slug}
           </Link>{" "}
           &bull; Posted by{" "}
-          <a href="/" title="view profile" className="profile-link">
+          <Link to={`/u/${subject.author.username}`} title="view profile" className="profile-link">
             {subject.author.screen_name}
-          </a>
+          </Link>
           <span> {subject.created_naturaltime}</span>
         </p>
         <h5>
