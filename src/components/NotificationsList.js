@@ -37,7 +37,11 @@ class NotificationsList extends Component {
             );
           })
         ) : (
-          <p>No Notifications Found</p>
+          <div className="card">
+            <div className="card-body text-center">
+              <h4 className="card-title">No activities yet</h4>
+            </div>
+          </div>
         )}
       </React.Fragment>
     );
