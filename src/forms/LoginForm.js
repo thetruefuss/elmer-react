@@ -80,7 +80,7 @@ class LoginForm extends Component {
             Login
           </button>
           <div className="text-center mt-4">
-            <a href="/">Forgot password?</a>
+            <Link to="/password_reset">Forgot password?</Link>
           </div>
         </form>
         <div className="card text-center mt-4">
