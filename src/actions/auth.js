@@ -24,6 +24,10 @@ export const logout = () => dispatch => {
   dispatch(userLoggedOut());
 };
 
+export const reset_password = email => () => {
+  api.user.reset_password(email);
+};
+
 export const refreshToken = token => dispatch =>
   api.user.refreshToken(token).then(user => {
     localStorage.token = user.token;

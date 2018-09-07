@@ -22,6 +22,7 @@ export default {
     signup: data =>
       axios.post("/api/users/signup/", data).then(res => res.data),
     refreshToken: token =>
-      axios.post("/api/auth/token/refresh/", token).then(res => res.data)
+      axios.post("/api/auth/token/refresh/", token).then(res => res.data),
+    reset_password: email => axios.post("/api/users/reset_password", email)
   }
 };
