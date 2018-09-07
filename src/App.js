@@ -14,6 +14,8 @@ import SearchResultsPage from "./pages/SearchResultsPage";
 import CreateSubjectPage from "./pages/CreateSubjectPage";
 import CreateBoardPage from "./pages/CreateBoardPage";
 import AboutPage from "./pages/AboutPage";
+import PasswordResetDonePage from "./pages/PasswordResetDonePage";
+import PasswordResetPage from "./pages/PasswordResetPage";
 import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
 import TermsOfUsePage from "./pages/TermsOfUsePage";
 import LoginPage from "./pages/LoginPage";
@@ -64,6 +66,18 @@ const App = ({ location, isAuthenticated }) => (
         component={ProfilePage}
       />
       <Route location={location} exact path="/about" component={AboutPage} />
+      <Route
+        location={location}
+        exact
+        path="/password_reset"
+        component={PasswordResetPage}
+      />
+      <Route
+        location={location}
+        exact
+        path="/password_reset/done"
+        component={PasswordResetDonePage}
+      />
       <Route
         location={location}
         exact
